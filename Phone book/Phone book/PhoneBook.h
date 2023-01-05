@@ -3,16 +3,22 @@
 
 class PhoneBook {
 private:
-	Person* book;
-	int size = 0;
+	Person* persons;
+	int length;
 
 public:
-	PhoneBook();
-	~PhoneBook();
+    PhoneBook();
+    PhoneBook(Person* persons, int length);
+    PhoneBook(const PhoneBook& phoneBook);
+    ~PhoneBook();
 
-	void Add();
-	void Delete();
-	void Search();
-	void Show();
-	void Run();
+    void Print();
+    void PrintNames();
+    void AddPersonData();
+    void AddPersonData(const Person& person);
+    void DeletePerson(int index);
+    void Search(char* name);
+    int GetSize();
+
+    void operator = (const PhoneBook& phoneBook);
 };

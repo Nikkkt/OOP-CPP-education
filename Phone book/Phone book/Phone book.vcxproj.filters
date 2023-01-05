@@ -18,18 +18,18 @@
     <ClCompile Include="main.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="PhoneBook.cpp">
+    <ClCompile Include="Person.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Person.cpp">
+    <ClCompile Include="PhoneBook.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="PhoneBook.h">
+    <ClInclude Include="Person.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Person.h">
+    <ClInclude Include="PhoneBook.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
