@@ -7,9 +7,23 @@ RAM::RAM(const RAM& copy): memory(copy.memory), price(copy.price) {
 	strcpy_s(name, strlen(copy.name) + 1, copy.name);
 }
 
-RAM::RAM(const char* name, int memory, double price) :memory(memory), price(price) {
+RAM::RAM() {
+	name = nullptr;
+	memory = 0;
+	price = 0.0;
+}
+
+RAM::RAM(const char* name) {
 	this->name = new char[strlen(name) + 1];
 	strcpy_s(this->name, strlen(name) + 1, name);
+}
+
+RAM::RAM(const char* name, int memory): RAM(name) {
+	this->memory = memory;
+}
+
+RAM::RAM(const char* name, int memory, double price): RAM(name, memory) {
+	this->price = price;
 }
 
 RAM::~RAM() {
@@ -35,9 +49,9 @@ void RAM::Print() {
 }
 
 // Getters
-const char* RAM::GetName() { return name; }
-int RAM::GetMemory() { return memory; }
-double RAM::GetPrice() { return price; }
+const char* RAM::GetName() const { return name; }
+int RAM::GetMemory() const { return memory; }
+double RAM::GetPrice() const { return price; }
 
 // Setters
 void RAM::SetName(const char* name) {

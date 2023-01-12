@@ -8,7 +8,12 @@ HDD::HDD(const HDD& copy): memory(copy.memory), price(copy.price) {
 	strcpy_s(name, strlen(copy.name) + 1, copy.name);
 }
 
-HDD::HDD(const char* name, int memory, double price):memory(memory),price(price) {
+HDD::HDD() :memory(0) {
+	name = nullptr;
+	price = 0.0;
+}
+
+HDD::HDD(const char* name, int memory, double price) :memory(memory), price(price) {
 	this->name = new char[strlen(name) + 1];
 	strcpy_s(this->name, strlen(name) + 1, name);
 }
@@ -32,9 +37,9 @@ void HDD::Print() {
 }
 
 // Getters
-const char* HDD::GetName() { return name; }
-const int HDD::GetMemory() { return memory; }
-double HDD::GetPrice() { return price; }
+const char* HDD::GetName() const { return name; }
+const int HDD::GetMemory() const { return memory; }
+double HDD::GetPrice() const { return price; }
 
 // Setters
 void HDD::SetName(const char* name) {

@@ -10,6 +10,7 @@ private:
 public:
 	// Constructor, destructor
 	HDD(const HDD& copy);
+	HDD();
 	HDD(const char* name, int memory, double price);
 	~HDD();
 
@@ -18,9 +19,9 @@ public:
 	void Print();
 
 	// Getters
-	const char* GetName();
-	const int GetMemory();
-	double GetPrice();
+	const char* GetName() const;
+	const int GetMemory() const;
+	double GetPrice() const;
 
 	// Setters
 	void SetName(const char* name);

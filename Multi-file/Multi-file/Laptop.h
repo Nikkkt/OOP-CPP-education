@@ -16,6 +16,7 @@ private:
 public:
 	// Constructor, destructor
 	Laptop(const Laptop& copy);
+	Laptop();
 	Laptop(const char* name, GraficsCard& gc, CPU& c, RAM& r, HDD& h);
 	~Laptop();
 
@@ -24,12 +25,12 @@ public:
 	void Print();
 
 	// Getters
-	const char* getName();
-	HDD getHDD();
-	GraficsCard getGraficsCard();
-	CPU getCPU();
-	RAM getRAM();
-	double getPrice();
+	const char* getName() const;
+	HDD getHDD() const;
+	GraficsCard getGraficsCard() const;
+	CPU getCPU() const;
+	RAM getRAM() const;
+	double getPrice() const;
 
 	// Setters
 	void setName(char* name);

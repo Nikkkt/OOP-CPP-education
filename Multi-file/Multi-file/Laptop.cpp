@@ -7,6 +7,11 @@ Laptop::Laptop(const Laptop& copy): gc(copy.gc), c(copy.c), r(copy.r), h(copy.h)
 	strcpy_s(name, strlen(copy.name) + 1, copy.name);
 }
 
+Laptop::Laptop() {
+	name = nullptr;
+	price = 0.0;
+}
+
 Laptop::Laptop(const char* name, GraficsCard& gc, CPU& c, RAM& r, HDD& h):
 	gc(gc), c(c), r(r), h(h), price(gc.GetPrice() + c.GetPrice() + r.GetPrice() + h.GetPrice() + 2000) {
 	this->name = new char[strlen(name) + 1];
@@ -51,12 +56,12 @@ void Laptop::Print() {
 }
 
 // Getters
-const char* Laptop::getName() { return name; }
-HDD Laptop::getHDD() { return h; }
-GraficsCard Laptop::getGraficsCard() { return gc; }
-CPU Laptop::getCPU() { return c; }
-RAM Laptop::getRAM() { return r; }
-double Laptop::getPrice() { return price; }
+const char* Laptop::getName() const { return name; }
+HDD Laptop::getHDD() const { return h; }
+GraficsCard Laptop::getGraficsCard() const { return gc; }
+CPU Laptop::getCPU() const { return c; }
+RAM Laptop::getRAM() const { return r; }
+double Laptop::getPrice() const { return price; }
 
 // Setters
 void Laptop::setName(char* name) {

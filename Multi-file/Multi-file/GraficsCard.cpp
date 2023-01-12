@@ -7,6 +7,11 @@ GraficsCard::GraficsCard(const GraficsCard& copy): memory(copy.memory), price(co
 	strcpy_s(name, strlen(copy.name) + 1, copy.name);
 }
 
+GraficsCard::GraficsCard() :memory(0) {
+	name = nullptr;
+	price = 0;
+}
+
 GraficsCard::GraficsCard(const char* name, int memory, double price) :memory(memory), price(price) {
 	this->name = new char[strlen(name) + 1];
 	strcpy_s(this->name, strlen(name) + 1, name);
@@ -31,9 +36,9 @@ void GraficsCard::Print() {
 }
 
 // Getters
-const char* GraficsCard::GetName() { return name; }
-const int GraficsCard::GetMemory() { return memory; }
-double GraficsCard::GetPrice() { return price; }
+const char* GraficsCard::GetName() const { return name; }
+const int GraficsCard::GetMemory() const { return memory; }
+double GraficsCard::GetPrice() const { return price; }
 
 // Setters
 void GraficsCard::SetName(const char* name) {

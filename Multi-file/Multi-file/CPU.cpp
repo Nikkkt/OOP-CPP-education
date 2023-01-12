@@ -7,10 +7,19 @@ CPU::CPU(const CPU& copy): Ghz(copy.Ghz), price(price) {
 	strcpy_s(name, strlen(copy.name) + 1, copy.name);
 }
 
-CPU::CPU(const char* name, double Ghz, double price) :Ghz(Ghz), price(price) {
+CPU::CPU() {
+	name = nullptr;
+	Ghz = 0.0;
+	price = 0.0;
+}
+
+CPU::CPU(const char* name) {
 	this->name = new char[strlen(name) + 1];
 	strcpy_s(this->name, strlen(name) + 1, name);
 }
+
+CPU::CPU(const char* name, double Ghz): CPU(name) { this->Ghz = Ghz; }
+CPU::CPU(const char* name, double Ghz, double price): CPU(name, Ghz) { this->price = price; }
 
 CPU::~CPU() {
 	delete[] name;
@@ -35,9 +44,9 @@ void CPU::Print() {
 }
 
 // Getters
-const char* CPU::GetName() { return name; }
-double CPU::GetGhz() { return Ghz; }
-double CPU::GetPrice() { return price; }
+const char* CPU::GetName() const { return name; }
+double CPU::GetGhz() const { return Ghz; }
+double CPU::GetPrice() const { return price; }
 
 // Setters
 void CPU::SetName(const char* name) {
