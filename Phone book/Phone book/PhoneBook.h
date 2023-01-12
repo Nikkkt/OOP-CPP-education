@@ -6,6 +6,8 @@ private:
 	Person* persons;
 	int length;
 
+    PhoneBook(int length);
+
 public:
     PhoneBook();
     PhoneBook(Person* persons, int length);
@@ -18,7 +20,11 @@ public:
     void AddPersonData(const Person& person);
     void DeletePerson(int index);
     void Search(char* name);
-    int GetSize();
+
+    Person* GetPersons() const;
+    int GetSize() const;
+
+    void SetPhoneBook(Person* persons, int length);
 
     void operator = (const PhoneBook& phoneBook);
 };

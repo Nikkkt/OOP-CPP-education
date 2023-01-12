@@ -6,8 +6,11 @@ PhoneBook::PhoneBook() {
 	length = 0;
 }
 
-PhoneBook::PhoneBook(Person* persons, int length) {
+PhoneBook::PhoneBook(int length) {
     this->length = length;
+}
+
+PhoneBook::PhoneBook(Person* persons, int length): PhoneBook(length) {
     this->persons = new Person[length];
     for (int i = 0; i < length; i++) this->persons[i] = persons[i];
 }
@@ -90,7 +93,15 @@ void PhoneBook::Search(char* name) {
     }
 }
 
-int PhoneBook::GetSize() { return length; }
+Person* PhoneBook::GetPersons() const { return persons; }
+int PhoneBook::GetSize() const { return length; }
+
+void PhoneBook::SetPhoneBook(Person* persons, int length) {
+    this->length = length;
+    if (this->persons != nullptr) delete[] this->persons;
+    this->persons = new Person[length];
+    this->persons = persons;
+}
 
 void PhoneBook::operator=(const PhoneBook& phoneBook) {
     if (this->persons != nullptr) delete[] this->persons;

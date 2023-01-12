@@ -1,6 +1,26 @@
 #include "Person.h"
 #include <iostream>
 
+Person::Person(const char* fullName) {
+    this->fullName = new char[strlen(fullName) + 1];
+    strcpy_s(this->fullName, strlen(fullName) + 1, fullName);
+}
+
+Person::Person(const char* fullName, const char* homePhone): Person(fullName) {
+    this->homePhone = new char[strlen(homePhone) + 1];
+    strcpy_s(this->homePhone, strlen(homePhone) + 1, homePhone);
+}
+
+Person::Person(const char* fullName, const char* homePhone, const char* workPhone): Person(fullName, homePhone) {
+    this->workPhone = new char[strlen(workPhone) + 1];
+    strcpy_s(this->workPhone, strlen(workPhone) + 1, workPhone);
+}
+
+Person::Person(const char* fullName, const char* homePhone, const char* workPhone, const char* mobilePhone): Person(fullName, homePhone, workPhone) {
+    this->mobilePhone = new char[strlen(mobilePhone) + 1];
+    strcpy_s(this->mobilePhone, strlen(mobilePhone) + 1, mobilePhone);
+}
+
 Person::Person() {
     fullName = nullptr;
     homePhone = nullptr;
@@ -9,19 +29,7 @@ Person::Person() {
     additionalInfo = nullptr;
 }
 
-Person::Person(const char* fullName, const char* homePhone, const char* workPhone, const char* mobilePhone, const char* additionalInfo) {
-    this->fullName = new char[strlen(fullName) + 1];
-    strcpy_s(this->fullName, strlen(fullName) + 1, fullName);
-
-    this->homePhone = new char[strlen(homePhone) + 1];
-    strcpy_s(this->homePhone, strlen(homePhone) + 1, homePhone);
-
-    this->workPhone = new char[strlen(workPhone) + 1];
-    strcpy_s(this->workPhone, strlen(workPhone) + 1, workPhone);
-
-    this->mobilePhone = new char[strlen(mobilePhone) + 1];
-    strcpy_s(this->mobilePhone, strlen(mobilePhone) + 1, mobilePhone);
-
+Person::Person(const char* fullName, const char* homePhone, const char* workPhone, const char* mobilePhone, const char* additionalInfo): Person(fullName, homePhone, workPhone, mobilePhone) {
     this->additionalInfo = new char[strlen(additionalInfo) + 1];
     strcpy_s(this->additionalInfo, strlen(additionalInfo) + 1, additionalInfo);
 }
@@ -120,7 +128,41 @@ void Person::Init() {
     system("cls");
 }
 
-char* Person::GetName() { return fullName; }
+char* Person::GetName() const { return fullName; }
+char* Person::GetHomePhone() const { return homePhone; }
+char* Person::GetWorkPhone() const { return workPhone; }
+char* Person::GetMobilePhone() const { return mobilePhone; }
+char* Person::GetAdditionalInfo() const { return additionalInfo; }
+
+void Person::SetName(const char* fullName) {
+    if (fullName != nullptr) delete[] fullName;
+    this->fullName = new char[strlen(fullName) + 1];
+    strcpy_s(this->fullName, strlen(fullName) + 1, fullName);
+}
+
+void Person::SetHomePhone(const char* homePhone) {
+    if (homePhone != nullptr) delete[] homePhone;
+    this->homePhone = new char[strlen(homePhone) + 1];
+    strcpy_s(this->homePhone, strlen(homePhone) + 1, homePhone);
+}
+
+void Person::SetWorkPhone(const char* workPhone) {
+    if (workPhone != nullptr) delete[] workPhone;
+    this->workPhone = new char[strlen(workPhone) + 1];
+    strcpy_s(this->workPhone, strlen(workPhone) + 1, workPhone);
+}
+
+void Person::SetMobilePhone(const char* mobilePhone) {
+    if (mobilePhone != nullptr) delete[] mobilePhone;
+    this->mobilePhone = new char[strlen(mobilePhone) + 1];
+    strcpy_s(this->mobilePhone, strlen(mobilePhone) + 1, mobilePhone);
+}
+
+void Person::SetAdditionalInfo(const char* additionalInfo) {
+    if (additionalInfo != nullptr) delete[] additionalInfo;
+    this->additionalInfo = new char[strlen(additionalInfo) + 1];
+    strcpy_s(this->additionalInfo, strlen(additionalInfo) + 1, additionalInfo);
+}
 
 void Person::operator = (const Person& person) {
     if (this->fullName != nullptr) delete[] this->fullName;
