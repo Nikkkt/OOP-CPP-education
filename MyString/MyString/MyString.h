@@ -5,6 +5,8 @@ private:
 	char* str;
 	int length;
 
+	static int count;
+
 public:
 	// Constructors, destructor
 	MyString();
@@ -43,4 +45,6 @@ public:
 	// 1 - the first string is bigger than the second
 	// 0 - strings are equal
 	int MyStrCmp(MyString& b);
+
+	static void ShowNumberOfObjects();
 };

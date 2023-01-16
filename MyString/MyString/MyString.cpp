@@ -4,6 +4,7 @@
 MyString::MyString() {
 	length = 80;
 	str = new char[length + 1];
+	MyString::count++;
 }
 
 MyString::MyString(const char* str) {
@@ -11,15 +12,18 @@ MyString::MyString(const char* str) {
 	while (str[length] != '\0') length++;
 	this->str = new char[length + 1];
 	for (int i = 0; i <= length; ++i) this->str[i] = str[i];
+	MyString::count++;
 }
 
 MyString::MyString(const MyString& copyStr): length(copyStr.length) {
+	MyString::count++;
 	str = new char[copyStr.length + 1];
 	strcpy_s(str, std::strlen(copyStr.str) + 1, copyStr.str);
 }
 
 MyString::~MyString() {
 	delete[] str;
+	MyString::count--;
 }
 
 void MyString::Input() {
@@ -104,4 +108,10 @@ int MyString::MyStrCmp(MyString& b) {
 	if (length > b.length) return -1;
 	if (length < b.length) return 1;
 	return 0;
+}
+
+void MyString::ShowNumberOfObjects() { 
+	if (MyString::count == 1) std::cout << MyString::count << " object" << std::endl; 
+	else if (MyString::count > 1) std::cout << MyString::count << " objects" << std::endl;
+	else std::cout << "There are no objects" << std::endl;
 }
