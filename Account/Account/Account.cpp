@@ -43,11 +43,11 @@ void Account::setCheckNumber(int checkNumber) { this->checkNumber = checkNumber;
 void Account::setPercent(double percent) { this->percent = percent; }
 void Account::setSum(double sum) { this->sum = sum; }
 
-const char* Account::getName() { return name; }
-const char* Account::getSurname() { return surname; }
-int Account::getCheckNumber() { return checkNumber; }
-double Account::getPercent() { return percent; }
-double Account::getSum() { return sum; }
+const char* Account::getName() const { return name; }
+const char* Account::getSurname() const { return surname; }
+int Account::getCheckNumber() const { return checkNumber; }
+double Account::getPercent() const { return percent; }
+double Account::getSum() const { return sum; }
 
 void Account::showInfo() {
 	printf("Name: %s\nSurname: %s\nCheck number: %d\nPercent: %.02f%%\nSum: %.02f UAH\n", name, surname, checkNumber, percent, sum);
@@ -113,4 +113,13 @@ double Account::toUSD() {
 double Account::toEUR() {
 	std::cout << "Your balance in EUR: " << sum / 39.0 << std::endl;
 	return sum / 39.0;
+}
+
+std::ostream& operator<<(std::ostream& o, const Account& a) {
+	o << "Name: " << a.getName() << std::endl <<
+		"Surname: " << a.getSurname() << std::endl <<
+		"Check number: " << a.getCheckNumber() << std::endl <<
+		"Percent: " << a.getPercent() << "%" << std::endl <<
+		"Sum: " << a.getSum() << " UAH";
+	return o;
 }

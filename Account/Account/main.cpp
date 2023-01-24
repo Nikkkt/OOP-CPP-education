@@ -3,7 +3,7 @@
 
 int main() {
 	Account pers1("Nikita", "Terpilovskyi", 1326292219, 3.5, 37463.56);
-	pers1.showInfo();
+	std::cout << pers1 << std::endl;
 	std::cout << std::endl;
 
 	pers1.changeOfOwnership("Vladislav", "Kolisnik");

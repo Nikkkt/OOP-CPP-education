@@ -30,8 +30,8 @@ public:
     void setDenominator(int den) { this->den = den; }
 
     // Getters
-    int getNumerator() { return num; }
-    int getDenominator() { return den; }
+    int getNumerator() const { return num; }
+    int getDenominator() const { return den; }
 
     // Methods
     
@@ -85,11 +85,16 @@ public:
     }
 };
 
+ostream& operator << (ostream& o, const Fraction& f) {
+    o << f.getNumerator() << "/" << f.getDenominator();
+    return o;
+}
+
 int main() {
     Fraction f = Fraction(3, 0);
 
     // 2147483647/1 (inf) 
-    f.showFraction();
+    cout << f << endl;
 
     // 4/8 = 1/2
     f.setNumerator(4);

@@ -115,3 +115,10 @@ void MyString::ShowNumberOfObjects() {
 	else if (MyString::count > 1) std::cout << MyString::count << " objects" << std::endl;
 	else std::cout << "There are no objects" << std::endl;
 }
+
+const char* MyString::GetStr() const { return str; }
+
+std::ostream& operator<<(std::ostream& o, const MyString& ms) {
+	o << ms.GetStr();
+	return o;
+}

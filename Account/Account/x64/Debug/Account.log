@@ -1,3 +1,5 @@
-﻿  main.cpp
+﻿  Account.cpp
+  main.cpp
 C:\Users\nikit\OneDrive\Рабочий стол\Programming\C++\OOP C++ education\Account\Account\main.cpp(17,17): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+  Создание кода...
   Account.vcxproj -> C:\Users\nikit\OneDrive\Рабочий стол\Programming\C++\OOP C++ education\Account\x64\Debug\Account.exe

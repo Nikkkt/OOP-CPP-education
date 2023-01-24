@@ -64,8 +64,13 @@ Point Point::operator--(int) {
 	return tmp;
 }
 
-float Point::GetX() { return x; }
-float Point::GetY() { return y; }
+float Point::GetX() const { return x; }
+float Point::GetY() const { return y; }
 
 void Point::SetX(float x) { this->x = x; }
 void Point::SetY(float y) { this->y = y; }
+
+std::ostream& operator<<(std::ostream& o, const Point& p) {
+	o << "(" << p.GetX() << ", " << p.GetY() << ")";
+	return o;
+}

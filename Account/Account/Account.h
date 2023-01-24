@@ -1,4 +1,6 @@
 #pragma once
+#include <iostream>
+
 class Account {
 private:
 	char* name;
@@ -21,11 +23,11 @@ public:
 	void setSum(double sum);
 
 	// Getters
-	const char* getName();
-	const char* getSurname();
-	int getCheckNumber();
-	double getPercent();
-	double getSum();
+	const char* getName() const;
+	const char* getSurname() const;
+	int getCheckNumber() const;
+	double getPercent() const;
+	double getSum() const;
 
 	void showInfo();
 	void initAccount();
@@ -37,3 +39,5 @@ public:
 	double toUSD();
 	double toEUR();
 };
+
+std::ostream& operator << (std::ostream& o, const Account& a);

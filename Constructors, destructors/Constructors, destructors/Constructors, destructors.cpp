@@ -38,6 +38,12 @@ public:
         delete[] display;
     }
 
+    const char* GetModel() const { return model; }
+    const char* GetColor() const { return color; }
+    const char* GetDisplay() const { return display; }
+    int GetYear() const { return year; }
+    double GetPrice() const { return price; }
+
     void print() {
         printf("Model: %s\nColor: %s\nDisplay: %s\nYear: %d\nPrice: %.02f\n", model, color, display, year, price);
     }
@@ -73,12 +79,23 @@ public:
     }
 };
 
+std::ostream& operator << (std::ostream& o, const Laptop& l) {
+    o << "Model: " << l.GetModel() << std::endl <<
+        "Color: " << l.GetColor() << std::endl <<
+        "Display: " << l.GetDisplay() << std::endl <<
+        "Year: " << l.GetYear() << std::endl <<
+        "Price: " << l.GetPrice();
+    return o;
+}
+
+//"Model: %s\nColor: %s\nDisplay: %s\nYear: %d\nPrice: %.02f\n"
+
 int main() {
     Laptop test1;
     test1.print();
 
     Laptop test("Dell", "Grey", "LCD", 2018, 25678.9);
-    test.print();
+    std::cout << test << std::endl;
 
     test.init();
     test.print();

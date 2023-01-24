@@ -15,9 +15,9 @@ public:
 	void Print();
 	void Init();
 
-	int GetDay();
-	int GetMonth();
-	int GetYear();
+	int GetDay() const;
+	int GetMonth() const;
+	int GetYear() const;
 
 	void SetDay(int day);
 	void SetMonth(int month);
@@ -35,12 +35,14 @@ public:
 	Date& operator+=(int b);
 	Date& operator-=(int b);
 
-	bool operator==(Date& b);
-	bool operator!=(Date& b);
+	bool operator==(const Date& b);
+	bool operator!=(const Date& b);
 
-	bool operator<(Date& b);
-	bool operator<=(Date& b);
+	bool operator<(const Date& b);
+	bool operator<=(const Date& b);
 
-	bool operator>(Date& b);
-	bool operator>=(Date& b);
+	bool operator>(const Date& b);
+	bool operator>=(const Date& b);
 };
+
+std::ostream& operator << (std::ostream& o, const Date& d);

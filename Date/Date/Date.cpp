@@ -20,7 +20,7 @@ Date::Date(int day, int month): Date(day) {
 }
 Date::Date(int day, int month, int year): Date(day, month) { this->year = year; }
 
-void Date::Print() { printf("%02d.%02d.%04d\n", day, month, year); }
+void Date::Print() { printf("%02d.%02d.%d\n", day, month, year); }
 
 void Date::Init() {
 	char c1, c2;
@@ -35,9 +35,9 @@ void Date::Init() {
 	}
 }
 
-int Date::GetDay() { return day; }
-int Date::GetMonth() { return month; }
-int Date::GetYear() { return year; }
+int Date::GetDay() const { return day; }
+int Date::GetMonth() const { return month; }
+int Date::GetYear() const { return year; }
 
 void Date::SetDay(int day) {
 	if (day < 0 || 
@@ -261,17 +261,17 @@ Date& Date::operator-=(int b) {
 	return *this;
 }
 
-bool Date::operator==(Date& b) {
+bool Date::operator==(const Date& b) {
 	if (day == b.day && month == b.month && year == b.year) { return true; }
 	return false;
 }
 
-bool Date::operator!=(Date& b) {
+bool Date::operator!=(const Date& b) {
 	if (day == b.day && month == b.month && year == b.year) { return false; }
 	return true;
 }
 
-bool Date::operator<(Date& b) {
+bool Date::operator<(const Date& b) {
 	if (year < b.year) { return true; }
 	else if (year == b.year) {
 		if (month < b.month) { return true; }
@@ -282,7 +282,7 @@ bool Date::operator<(Date& b) {
 	return false;
 }
 
-bool Date::operator<=(Date& b) {
+bool Date::operator<=(const Date& b) {
 	if (year < b.year) { return true; }
 	else if (year == b.year) {
 		if (month < b.month) { return true; }
@@ -293,7 +293,7 @@ bool Date::operator<=(Date& b) {
 	return false;
 }
 
-bool Date::operator>(Date& b) {
+bool Date::operator>(const Date& b) {
 	if (year > b.year) { return true; }
 	else if (year == b.year) {
 		if (month > b.month) { return true; }
@@ -304,7 +304,7 @@ bool Date::operator>(Date& b) {
 	return false;
 }
 
-bool Date::operator>=(Date& b)
+bool Date::operator>=(const Date& b)
 {
 	if (year > b.year) { return true; }
 	else if (year == b.year) {
@@ -314,4 +314,12 @@ bool Date::operator>=(Date& b)
 		}
 	}
 	return false;
+}
+
+std::ostream& operator << (std::ostream& o, const Date& d) {
+	if (d.GetDay() < 10 && d.GetMonth() < 10) { o << "0" << d.GetDay() << ".0" << d.GetMonth() << "." << d.GetYear(); }
+	else if (d.GetDay() < 10 && d.GetMonth() > 10) { o << "0" << d.GetDay() << "." << d.GetMonth() << "." << d.GetYear(); }
+	else if (d.GetDay() > 10 && d.GetMonth() < 10) { o << d.GetDay() << ".0" << d.GetMonth() << "." << d.GetYear(); }
+	else { o << d.GetDay() << "." << d.GetMonth() << "." << d.GetYear(); }
+	return o;
 }

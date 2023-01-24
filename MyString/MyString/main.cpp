@@ -5,7 +5,7 @@ int MyString::count = 0;
 
 int main() {
 	MyString str1("Hello world!");
-	str1.Print(); // Hello world!
+	std::cout << str1 << std::endl; // Hello world!
 	std::cout << str1.MyStrLen() << std::endl; // 12
 	MyString::ShowNumberOfObjects(); // 1 object
 

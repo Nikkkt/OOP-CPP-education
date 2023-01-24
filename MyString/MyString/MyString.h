@@ -1,4 +1,6 @@
 #pragma once
+#include <iostream>
+
 class MyString {
 private:
 	// Fields
@@ -47,4 +49,8 @@ public:
 	int MyStrCmp(MyString& b);
 
 	static void ShowNumberOfObjects();
+
+	const char* GetStr() const;
 };
+
+std::ostream& operator << (std::ostream& o, const MyString& ms);

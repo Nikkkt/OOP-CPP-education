@@ -25,9 +25,11 @@ public:
     Point operator++(int);
     Point operator--(int);
 
-    float GetX();
-    float GetY();
+    float GetX() const;
+    float GetY() const;
 
     void SetX(float x);
     void SetY(float y);
 };
+
+std::ostream& operator << (std::ostream& o, const Point& p);
