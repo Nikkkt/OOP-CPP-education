@@ -23,26 +23,27 @@ public:
 	void SetMonth(int month);
 	void SetYear(int year);
 
-	Date& operator++();
-	Date& operator--();
-	Date operator++(int);
-	Date operator--(int);
+	Date& operator ++ ();
+	Date& operator -- ();
+	Date operator ++ (int);
+	Date operator -- (int);
 
-	Date operator+(int b);
-	Date operator-(int b);
-	Date operator-(Date b);
+	Date operator + (int b);
+	Date operator - (int b);
+	Date operator - (Date b);
 
-	Date& operator+=(int b);
-	Date& operator-=(int b);
+	Date& operator += (int b);
+	Date& operator -= (int b);
 
-	bool operator==(const Date& b);
-	bool operator!=(const Date& b);
+	bool operator == (const Date& b);
+	bool operator != (const Date& b);
 
-	bool operator<(const Date& b);
-	bool operator<=(const Date& b);
+	bool operator < (const Date& b);
+	bool operator <= (const Date& b);
 
-	bool operator>(const Date& b);
-	bool operator>=(const Date& b);
+	bool operator > (const Date& b);
+	bool operator >= (const Date& b);
+
+	friend std::ostream& operator << (std::ostream& o, const Date& d);
+	friend std::istream& operator >> (std::istream& i, Date& d);
 };
-
-std::ostream& operator << (std::ostream& o, const Date& d);

@@ -71,7 +71,7 @@ void Date::SetMonth(int month) {
 
 void Date::SetYear(int year) { this->year = year;}
 
-Date& Date::operator++() {
+Date& Date::operator ++ () {
 	day += 1;
 	if (((month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12) && day > 31) ||
 		((month == 4 || month == 6 || month == 9 || month == 11) && day > 30) ||
@@ -87,7 +87,7 @@ Date& Date::operator++() {
 	return *this;
 }
 
-Date& Date::operator--() {
+Date& Date::operator -- () {
 	day -= 1;
 	if (day < 1) {
 		day = 1;
@@ -100,7 +100,7 @@ Date& Date::operator--() {
 	return *this;
 }
 
-Date Date::operator++(int) {
+Date Date::operator ++ (int) {
 	Date tmp(this->day, this->month, this->year);
 	day += 1;
 	if (((month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12) && day > 31) ||
@@ -117,7 +117,7 @@ Date Date::operator++(int) {
 	return tmp;
 }
 
-Date Date::operator--(int) {
+Date Date::operator -- (int) {
 	Date tmp(this->day, this->month, this->year);
 	day -= 1;
 	if (day < 1) {
@@ -131,7 +131,7 @@ Date Date::operator--(int) {
 	return tmp;
 }
 
-Date Date::operator+(int b) {
+Date Date::operator + (int b) {
 	Date tmp(this->day, this->month, this->year);
 	day += b;
 	if (((month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12) && day > 31)) {
@@ -157,7 +157,7 @@ Date Date::operator+(int b) {
 	return tmp;
 }
 
-Date Date::operator-(int b) {
+Date Date::operator - (int b) {
 	Date tmp(this->day, this->month, this->year);
 	day -= b;
 	if (((month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12) && day < 0)) {
@@ -183,7 +183,7 @@ Date Date::operator-(int b) {
 	return tmp;
 }
 
-Date Date::operator-(Date b) {
+Date Date::operator - (Date b) {
 	Date tmp(this->day, this->month, this->year);
 	day -= b.day;
 	month -= b.month;
@@ -211,7 +211,7 @@ Date Date::operator-(Date b) {
 	return tmp;
 }
 
-Date& Date::operator+=(int b) {
+Date& Date::operator += (int b) {
 	day += b;
 	if (((month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12) && day > 31)) {
 		day -= 31;
@@ -236,7 +236,7 @@ Date& Date::operator+=(int b) {
 	return *this;
 }
 
-Date& Date::operator-=(int b) {
+Date& Date::operator -= (int b) {
 	day -= b;
 	if (((month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12) && day < 0)) {
 		day += 31;
@@ -261,17 +261,17 @@ Date& Date::operator-=(int b) {
 	return *this;
 }
 
-bool Date::operator==(const Date& b) {
+bool Date::operator == (const Date& b) {
 	if (day == b.day && month == b.month && year == b.year) { return true; }
 	return false;
 }
 
-bool Date::operator!=(const Date& b) {
+bool Date::operator != (const Date& b) {
 	if (day == b.day && month == b.month && year == b.year) { return false; }
 	return true;
 }
 
-bool Date::operator<(const Date& b) {
+bool Date::operator < (const Date& b) {
 	if (year < b.year) { return true; }
 	else if (year == b.year) {
 		if (month < b.month) { return true; }
@@ -282,7 +282,7 @@ bool Date::operator<(const Date& b) {
 	return false;
 }
 
-bool Date::operator<=(const Date& b) {
+bool Date::operator <= (const Date& b) {
 	if (year < b.year) { return true; }
 	else if (year == b.year) {
 		if (month < b.month) { return true; }
@@ -293,7 +293,7 @@ bool Date::operator<=(const Date& b) {
 	return false;
 }
 
-bool Date::operator>(const Date& b) {
+bool Date::operator > (const Date& b) {
 	if (year > b.year) { return true; }
 	else if (year == b.year) {
 		if (month > b.month) { return true; }
@@ -304,7 +304,7 @@ bool Date::operator>(const Date& b) {
 	return false;
 }
 
-bool Date::operator>=(const Date& b)
+bool Date::operator >= (const Date& b)
 {
 	if (year > b.year) { return true; }
 	else if (year == b.year) {
@@ -317,9 +317,24 @@ bool Date::operator>=(const Date& b)
 }
 
 std::ostream& operator << (std::ostream& o, const Date& d) {
-	if (d.GetDay() < 10 && d.GetMonth() < 10) { o << "0" << d.GetDay() << ".0" << d.GetMonth() << "." << d.GetYear(); }
-	else if (d.GetDay() < 10 && d.GetMonth() > 10) { o << "0" << d.GetDay() << "." << d.GetMonth() << "." << d.GetYear(); }
-	else if (d.GetDay() > 10 && d.GetMonth() < 10) { o << d.GetDay() << ".0" << d.GetMonth() << "." << d.GetYear(); }
-	else { o << d.GetDay() << "." << d.GetMonth() << "." << d.GetYear(); }
+	if (d.day < 10 && d.month < 10) { o << "0" << d.day << ".0" << d.month << "." << d.year; }
+	else if (d.day < 10 && d.month > 10) { o << "0" << d.day << "." << d.month << "." << d.year; }
+	else if (d.day > 10 && d.month < 10) { o << d.day << ".0" << d.month << "." << d.year; }
+	else { o << d.day << "." << d.month << "." << d.year; }
 	return o;
+}
+
+std::istream& operator>>(std::istream& i, Date& d) {
+	init:
+		char c1, c2;
+		std::cout << "Enter date in xx.xx.xxxx format -> ";
+		std::cin >> d.day >> c1 >> d.month >> c2 >> d.year;
+		if (c1 != '.' || c2 != '.' || d.day < 0 || d.month < 0 || d.month > 12 ||
+			((d.month == 1 || d.month == 3 || d.month == 5 || d.month == 7 || d.month == 8 || d.month == 10 || d.month == 12) && d.day > 31) ||
+			((d.month == 4 || d.month == 6 || d.month == 9 || d.month == 11) && d.day > 30) ||
+			(d.month == 2 && d.year % 4 != 0 && d.day > 28) ||
+			(d.month == 2 && d.year % 4 == 0 && d.day > 29)) {
+			goto init;
+		}
+	return i;
 }
