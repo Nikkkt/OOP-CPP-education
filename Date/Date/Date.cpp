@@ -316,6 +316,14 @@ bool Date::operator >= (const Date& b)
 	return false;
 }
 
+int Date::operator [] (int index) {
+	if (index == 0 || index == -3) return day;
+	else if (index == 1 || index == -2) return month;
+	else if (index == 2 || index == -1) return year;
+	else throw "OOPS!";
+	return 0;
+}
+
 std::ostream& operator << (std::ostream& o, const Date& d) {
 	if (d.day < 10 && d.month < 10) { o << "0" << d.day << ".0" << d.month << "." << d.year; }
 	else if (d.day < 10 && d.month > 10) { o << "0" << d.day << "." << d.month << "." << d.year; }

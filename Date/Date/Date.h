@@ -44,6 +44,8 @@ public:
 	bool operator > (const Date& b);
 	bool operator >= (const Date& b);
 
+	int operator [] (int index);
+
 	friend std::ostream& operator << (std::ostream& o, const Date& d);
 	friend std::istream& operator >> (std::istream& i, Date& d);
 };
