@@ -1,0 +1,5 @@
+﻿  Student.cpp
+  main.cpp
+C:\Users\nikit\OneDrive\Рабочий стол\Programming\C++\OOP C++ education\Student\Student\main.cpp(5,12): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+  Создание кода...
+  Student.vcxproj -> C:\Users\nikit\OneDrive\Рабочий стол\Programming\C++\OOP C++ education\Student\x64\Debug\Student.exe
