@@ -135,31 +135,31 @@ char* Person::GetMobilePhone() const { return mobilePhone; }
 char* Person::GetAdditionalInfo() const { return additionalInfo; }
 
 void Person::SetName(const char* fullName) {
-    if (fullName != nullptr) delete[] fullName;
+    if (this->fullName != nullptr) delete[] this->fullName;
     this->fullName = new char[strlen(fullName) + 1];
     strcpy_s(this->fullName, strlen(fullName) + 1, fullName);
 }
 
 void Person::SetHomePhone(const char* homePhone) {
-    if (homePhone != nullptr) delete[] homePhone;
+    if (this->homePhone != nullptr) delete[] this->homePhone;
     this->homePhone = new char[strlen(homePhone) + 1];
     strcpy_s(this->homePhone, strlen(homePhone) + 1, homePhone);
 }
 
 void Person::SetWorkPhone(const char* workPhone) {
-    if (workPhone != nullptr) delete[] workPhone;
+    if (this->workPhone != nullptr) delete[] this->workPhone;
     this->workPhone = new char[strlen(workPhone) + 1];
     strcpy_s(this->workPhone, strlen(workPhone) + 1, workPhone);
 }
 
 void Person::SetMobilePhone(const char* mobilePhone) {
-    if (mobilePhone != nullptr) delete[] mobilePhone;
+    if (this->mobilePhone != nullptr) delete[] this->mobilePhone;
     this->mobilePhone = new char[strlen(mobilePhone) + 1];
     strcpy_s(this->mobilePhone, strlen(mobilePhone) + 1, mobilePhone);
 }
 
 void Person::SetAdditionalInfo(const char* additionalInfo) {
-    if (additionalInfo != nullptr) delete[] additionalInfo;
+    if (this->additionalInfo != nullptr) delete[] this->additionalInfo;
     this->additionalInfo = new char[strlen(additionalInfo) + 1];
     strcpy_s(this->additionalInfo, strlen(additionalInfo) + 1, additionalInfo);
 }
@@ -185,4 +185,23 @@ void Person::operator = (const Person& person) {
 
     this->additionalInfo = new char[strlen(person.additionalInfo) + 1];
     strcpy_s(this->additionalInfo, strlen(person.additionalInfo) + 1, person.additionalInfo);
+}
+
+std::ostream& operator << (std::ostream& o, const Person& p) {
+    if (p.fullName != nullptr) o << p.fullName << "`s phone numbers:" << std::endl;
+    else o << "None phone numbers:" << std::endl;
+
+    if (p.homePhone != nullptr) o << "- Home phone: " << p.homePhone << std::endl;
+    else o << "- Home phone: None" << std::endl;
+
+    if (p.workPhone != nullptr) o << "- Work phone: " << p.workPhone << std::endl;
+    else o << "- Work phone: None" << std::endl;
+
+    if (p.mobilePhone != nullptr) o << "- Mobile phone: " << p.mobilePhone << std::endl;
+    else o << "- Mobile phone: None" << std::endl;
+
+    if (p.additionalInfo != nullptr) o << "Additional info: " << p.additionalInfo << std::endl;
+    else o << "Additional info: None" << std::endl;
+
+    return o;
 }

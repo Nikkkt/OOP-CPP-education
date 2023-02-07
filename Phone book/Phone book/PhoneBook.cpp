@@ -103,11 +103,26 @@ void PhoneBook::SetPhoneBook(Person* persons, int length) {
     this->persons = persons;
 }
 
-void PhoneBook::operator=(const PhoneBook& phoneBook) {
-    if (this->persons != nullptr) delete[] this->persons;
-    length = phoneBook.length;
-    persons = new Person[phoneBook.length];
-    for (int i = 0; i < phoneBook.length; i++) {
-        persons[i] = phoneBook.persons[i];
+PhoneBook& PhoneBook::operator = (const PhoneBook& phoneBook) {
+    if (&phoneBook != this) {
+        if (this->persons != nullptr) delete[] this->persons;
+        length = phoneBook.length;
+        persons = new Person[phoneBook.length];
+        for (int i = 0; i < phoneBook.length; i++) persons[i] = phoneBook.persons[i];
     }
+    return *this;
+}
+
+Person& PhoneBook::operator [] (int index) {
+    if (index >= 0 && index < length) return persons[index];
+    else throw "Outside the array";
+    return;
+}
+
+std::ostream& operator << (std::ostream& o, const PhoneBook& pb) {
+    for (int i = 0; i < pb.length; i++) {
+        o << pb.persons[i];
+        o << "--------------------------------" << std::endl;
+    }
+    return o;
 }

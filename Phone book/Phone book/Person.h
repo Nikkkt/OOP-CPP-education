@@ -34,4 +34,5 @@ public:
     void SetAdditionalInfo(const char* additionalInfo);
 
     void operator = (const Person& person);
+    friend std::ostream& operator << (std::ostream& o, const Person& p);
 };

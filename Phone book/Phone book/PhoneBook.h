@@ -1,5 +1,6 @@
 #pragma once
 #include "Person.h"
+#include <iostream>
 
 class PhoneBook {
 private:
@@ -26,5 +27,7 @@ public:
 
     void SetPhoneBook(Person* persons, int length);
 
-    void operator = (const PhoneBook& phoneBook);
+    PhoneBook& operator = (const PhoneBook& phoneBook);
+    Person& operator [] (int index);
+    friend std::ostream& operator << (std::ostream& o, const PhoneBook& pb);
 };
