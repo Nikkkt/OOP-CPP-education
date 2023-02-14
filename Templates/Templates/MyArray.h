@@ -15,6 +15,9 @@ public:
     void Input();
     void Print();
 
+    void Add(T el);
+    void Del();
+
     int GetSize();
     bool IsEmpty();
 
@@ -55,6 +58,41 @@ template<class T>
 void MyArray<T>::Print() {
     for (int i = 0; i < count; i++) cout << arr[i] << "\t";
     cout << endl;
+}
+
+template<class T>
+void MyArray<T>::Add(T el) {
+    if (arr != nullptr) {
+        T* tmp = new T[count];
+        for (int i = 0; i < count; i++) tmp[i] = arr[i];
+
+        delete[] arr;
+        count++;
+        arr = new T[count];
+
+        for (int i = 0; i < count - 1; i++) arr[i] = tmp[i];
+        arr[count - 1] = el;
+        delete[] tmp;
+    }
+    else {
+        count++;
+        arr = new T[count];
+        arr[count - 1] = el;
+    }
+}
+
+template<class T>
+void MyArray<T>::Del() {
+    if (arr == nullptr) return;
+    T* tmp = new T[count];
+
+    for (int i = 0; i < count; i++) tmp[i] = arr[i];
+    delete[] arr;
+    count--;
+    arr = new T[count];
+
+    for (int i = 0; i < count; i++) arr[i] = tmp[i];
+    delete[] tmp;
 }
 
 template<class T>

@@ -15,6 +15,7 @@ public:
 	~List();
 
 	void Add(char data);
+	void AddToHead(char data);
 	void AddByIndex(char data, int index);
 
 	void Del();
@@ -24,5 +25,7 @@ public:
 	int Search(char data);
 
 	void Print();
+	void Print(int index);
+	void PrintHead();
 	int GetCount();
 };

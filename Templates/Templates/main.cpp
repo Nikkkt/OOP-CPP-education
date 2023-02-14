@@ -18,4 +18,13 @@ int main() {
 	MyArray<int> arr3;
 	arr3 = arr1 + arr2;
 	arr3.Print();
+	cout << arr3.GetSize() << endl; // 9
+
+	arr3.Add(5);
+	arr3.Print();
+	cout << arr3.GetSize() << endl; // 10
+
+	arr3.Del();
+	arr3.Print();
+	cout << arr3.GetSize() << endl; // 9
 }

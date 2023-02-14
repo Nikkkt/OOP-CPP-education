@@ -31,6 +31,11 @@ void main() {
 
 	l.DelByIndex(5);
 	l.Print(); // a e b c
+	l.Print(2); // e
+	l.PrintHead(); // a
 
-	cout << l.Search('b') << endl; // 3
+	l.AddToHead('1');
+	l.Print();
+
+	cout << l.Search('b') << endl; // 4
 }

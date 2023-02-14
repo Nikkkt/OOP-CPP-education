@@ -1,11 +1,11 @@
 ﻿  main.cpp
 C:\Users\nikit\OneDrive\Рабочий стол\Programming\C++\OOP C++ education\Templates\Templates\main.cpp(6,12): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
-C:\Users\nikit\OneDrive\Рабочий стол\Programming\C++\OOP C++ education\Templates\Templates\MyArray.h(52,82): warning C4244: =: преобразование "double" в "T", возможна потеря данных
+C:\Users\nikit\OneDrive\Рабочий стол\Programming\C++\OOP C++ education\Templates\Templates\MyArray.h(55,82): warning C4244: =: преобразование "double" в "T", возможна потеря данных
           with
           [
               T=int
           ]
-C:\Users\nikit\OneDrive\Рабочий стол\Programming\C++\OOP C++ education\Templates\Templates\MyArray.h(52): message : во время компиляции функции-члена класс шаблон "void MyArray<int>::Input(void)"
+C:\Users\nikit\OneDrive\Рабочий стол\Programming\C++\OOP C++ education\Templates\Templates\MyArray.h(55): message : во время компиляции функции-члена класс шаблон "void MyArray<int>::Input(void)"
 C:\Users\nikit\OneDrive\Рабочий стол\Programming\C++\OOP C++ education\Templates\Templates\main.cpp(10): message : выполняется компиляция ссылки на экземпляр шаблон функции "void MyArray<int>::Input(void)"
 C:\Users\nikit\OneDrive\Рабочий стол\Programming\C++\OOP C++ education\Templates\Templates\main.cpp(7): message : выполняется компиляция ссылки на экземпляр класс шаблон функции "MyArray<int>"
   Templates.vcxproj -> C:\Users\nikit\OneDrive\Рабочий стол\Programming\C++\OOP C++ education\Templates\x64\Debug\Templates.exe

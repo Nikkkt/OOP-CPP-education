@@ -24,6 +24,15 @@ void List::Add(char data) {
 	count++;
 }
 
+void List::AddToHead(char data) {
+
+	node* temp = head;
+	head = new node;
+
+	head->data = data;
+	head->next = temp;
+}
+
 void List::AddByIndex(char data, int index) {
 	if (index > count || index < 1) return;
 
@@ -99,6 +108,15 @@ void List::Print() {
 	for (node* temp = head; temp != nullptr; temp = temp->next) std::cout << temp->data << " ";
 	std::cout << std::endl << std::endl;
 }
+
+void List::Print(int index) {
+	if (index > count || index < 1) return;
+	node* temp = head;
+	for (int i = 1; i < index; temp = temp->next, i++) continue;
+	std::cout << temp->data << std::endl << std::endl;
+}
+
+void List::PrintHead() { std::cout << head->data << std::endl << std::endl; }
 
 int List::Search(char data) {
 	node* temp = head;
