@@ -80,9 +80,7 @@ int MyString::MyChr(char c) {
 	return -1;
 }
 
-int MyString::MyStrLen() {
-	return length;
-}
+int MyString::MyStrLen() { return length; }
 
 void MyString::MyStrCat(MyString& b) {
 	int newLength = length + b.length;
@@ -126,7 +124,13 @@ const char* MyString::GetStr() const { return str; }
 
 MyString& MyString::operator = (const MyString& copy) {
 	if (this != &copy) {
+		if (copy.str == nullptr) {
+			str = nullptr;
+			length = copy.length;
+			return *this;
+		}
 		length = copy.length;
+		if (str != nullptr) delete[] str;
 		str = new char[copy.length + 1];
 		strcpy_s(str, std::strlen(copy.str) + 1, copy.str);
 	}
@@ -135,6 +139,7 @@ MyString& MyString::operator = (const MyString& copy) {
 
 MyString& MyString::operator = (MyString&& move) {
 	if (this != &move) {
+		delete[] str;
 		length = move.length;
 		str = move.str;
 		move.length = 80;
