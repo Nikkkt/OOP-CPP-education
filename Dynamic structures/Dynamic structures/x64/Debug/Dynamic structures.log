@@ -1,6 +1,4 @@
-﻿  List.cpp
-  main.cpp
-C:\Users\nikit\OneDrive\Рабочий стол\Programming\C++\OOP C++ education\Dynamic structures\Dynamic structures\main.cpp(6,13): warning C4326: возвращаемый тип "main" должен быть "int", а не "void"
-C:\Users\nikit\OneDrive\Рабочий стол\Programming\C++\OOP C++ education\Dynamic structures\Dynamic structures\main.cpp(7,12): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
-  Создание кода...
+﻿  main.cpp
+C:\Users\nikit\OneDrive\Рабочий стол\Programming\C++\OOP C++ education\Dynamic structures\Dynamic structures\main.cpp(9,13): warning C4326: возвращаемый тип "main" должен быть "int", а не "void"
+C:\Users\nikit\OneDrive\Рабочий стол\Programming\C++\OOP C++ education\Dynamic structures\Dynamic structures\main.cpp(10,12): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
   Dynamic structures.vcxproj -> C:\Users\nikit\OneDrive\Рабочий стол\Programming\C++\OOP C++ education\Dynamic structures\x64\Debug\Dynamic structures.exe
