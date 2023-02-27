@@ -21,6 +21,12 @@ MyString::MyString(const MyString& copyStr): length(copyStr.length) {
 	strcpy_s(str, std::strlen(copyStr.str) + 1, copyStr.str);
 }
 
+MyString::MyString(MyString&& moveStr): length(moveStr.length), str(moveStr.str) {
+	MyString::count++;
+	moveStr.length = 80;
+	moveStr.str = new char[moveStr.length + 1];
+}
+
 MyString::~MyString() {
 	delete[] str;
 	MyString::count--;
@@ -117,6 +123,25 @@ void MyString::ShowNumberOfObjects() {
 }
 
 const char* MyString::GetStr() const { return str; }
+
+MyString& MyString::operator = (const MyString& copy) {
+	if (this != &copy) {
+		length = copy.length;
+		str = new char[copy.length + 1];
+		strcpy_s(str, std::strlen(copy.str) + 1, copy.str);
+	}
+	return *this;
+}
+
+MyString& MyString::operator = (MyString&& move) {
+	if (this != &move) {
+		length = move.length;
+		str = move.str;
+		move.length = 80;
+		move.str = new char[move.length + 1];
+	}
+	return *this;
+}
 
 std::ostream& operator<<(std::ostream& o, const MyString& ms) {
 	o << ms.GetStr();

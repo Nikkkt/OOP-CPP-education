@@ -21,6 +21,8 @@ public:
     int GetSize();
     bool IsEmpty();
 
+    T Sum();
+
     ~MyArray();
 
     MyArray<T>& operator = (const MyArray<T>& orig);
@@ -100,6 +102,13 @@ int MyArray<T>::GetSize() { return count; }
 
 template<class T>
 bool MyArray<T>::IsEmpty() { return count == 0; }
+
+template<class T>
+T MyArray<T>::Sum() {
+    T res = 0;
+    for (int i = 0; i < count; i++) res += arr[i];
+    return res;
+}
 
 template<class T>
 MyArray<T>::~MyArray() { delete[] arr; }

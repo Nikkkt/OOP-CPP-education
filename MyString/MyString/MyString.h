@@ -14,6 +14,7 @@ public:
 	MyString();
 	MyString(const char* str);
 	MyString(const MyString& copyStr);
+	MyString(MyString&& moveStr);
 	~MyString();
 
 	//////////////// METHODS ////////////////
@@ -51,6 +52,9 @@ public:
 	static void ShowNumberOfObjects();
 
 	const char* GetStr() const;
+
+	MyString& operator = (const MyString& copy);
+	MyString& operator = (MyString&& move);
 };
 
 std::ostream& operator << (std::ostream& o, const MyString& ms);

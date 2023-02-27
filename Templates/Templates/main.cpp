@@ -1,5 +1,6 @@
 #include <iostream>
 #include "MyArray.h"
+#include "Point.h"
 using namespace std;
 
 int main() {
@@ -27,4 +28,7 @@ int main() {
 	arr3.Del();
 	arr3.Print();
 	cout << arr3.GetSize() << endl; // 9
+
+	MyArray<Point> arrPoint1(5);
+	MyArray<Point> arrPoint2(4);
 }
