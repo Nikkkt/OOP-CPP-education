@@ -1,251 +1,441 @@
 #pragma once
 #include <iostream>
-using namespace std;
 
 template<class T>
 class MyArray {
-    T* arr;
-    int count;
+private:
+	T* arr;
+	int count;
+	unsigned int grow = 0;
+	unsigned int extra = 0;
 
 public:
-    MyArray();
-    MyArray(int size);
-    MyArray(const MyArray<T>& ar);
+	MyArray();
+	MyArray(int size);
+	MyArray(const MyArray<T>& ar);
 
-    void Input();
-    void Print();
+	void Input();
+	void Print();
+	void PrintDev();
 
-    void Add(T el);
-    void Del();
+	int GetUpperBound();
+	bool IsEmpty();
 
-    int GetSize();
-    bool IsEmpty();
+	void FreeExtra();
+	void RemoveAll();
 
-    T Sum();
+	T GetAt(int index)const;
 
-    ~MyArray();
+	void SetAt(T el, int index);
+	void Add(T el);
 
-    MyArray<T>& operator = (const MyArray<T>& orig);
+	T Sum();
 
-    MyArray<T> operator + (int b);
-    MyArray<T> operator - (int b);
+	void Append(const MyArray<T>& right);
 
-    MyArray<T> operator ++ (int);
-    MyArray<T> operator ++ ();
+	T* GetData()const;
 
-    MyArray<T> operator -- (int);
-    MyArray<T> operator -- ();
+	void InsertAt(T el, int pos);
+	void InsertAt(T* elArr, const int SIZE, int pos);
 
-    T operator [] (int index);
+	void RemoveAt(int pos);
+	void RemoveAt(int posBegin, int posEnd);
 
-    MyArray<T> operator + (const MyArray<T>& b);
+	MyArray<T>& operator ++ ();
+	MyArray<T>& operator -- ();
+
+	MyArray<T> operator ++ (int);
+	MyArray<T> operator -- (int);
+
+	MyArray<T> operator + (int n);
+	MyArray<T> operator + (const MyArray<T>& obj);
+
+	MyArray<T> operator - (int n);
+
+	MyArray<T>& operator = (const MyArray<T>& obj);
+
+	T& operator [] (int index);
+	T operator [] (int index)const;
+
+	int GetSize()const;
+	void SetSize(int size, int grow = 0);
+
+	~MyArray();
 };
 
 template<class T>
-MyArray<T>::MyArray(): count(0) { arr = nullptr; }
-
-template<class T>
-MyArray<T>::MyArray(int size): count(size) { arr = new T[count]; }
-
-template<class T>
-MyArray<T>::MyArray(const MyArray<T>& obj): count(obj.count) {
-    arr = new T[count];
-    for (int i = 0; i < count; i++) arr[i] = obj.arr[i];
+MyArray<T>::MyArray() {
+	arr = nullptr;
+	count = 0;
 }
 
 template<class T>
-void MyArray<T>::Input() { for (int i = 0; i < count; i++) arr[i] = rand() % 100 * 2.5; }
+MyArray<T>::MyArray(int size): count(size) { arr = new T[count + extra]; }
+
+template<class T>
+MyArray<T>::MyArray(const MyArray<T>& obj) {
+	count = obj.count;
+	extra = obj.extra;
+	grow = obj.grow;
+
+	arr = new T[count + extra];
+
+	for (int i = 0; i < count; i++) arr[i] = obj.arr[i];
+	for (int i = count; i < count + extra; i++) arr[i] = 0;
+}
+
+template<class T>
+void MyArray<T>::Input() { for (int i = 0; i < count; i++) arr[i] = rand() % 100; }
 
 template<class T>
 void MyArray<T>::Print() {
-    for (int i = 0; i < count; i++) cout << arr[i] << "\t";
-    cout << endl;
+	for (int i = 0; i < count; i++) std::cout << arr[i] << " ";
+	std::cout << std::endl;
 }
 
 template<class T>
-void MyArray<T>::Add(T el) {
-    if (arr != nullptr) {
-        T* tmp = new T[count];
-        for (int i = 0; i < count; i++) tmp[i] = arr[i];
+void MyArray<T>::PrintDev() {
+	for (int i = 0; i < count; i++) std::cout << arr[i] << " ";
+	std::cout << " | ";
 
-        delete[] arr;
-        count++;
-        arr = new T[count];
-
-        for (int i = 0; i < count - 1; i++) arr[i] = tmp[i];
-        arr[count - 1] = el;
-        delete[] tmp;
-    }
-    else {
-        count++;
-        arr = new T[count];
-        arr[count - 1] = el;
-    }
+	for (int i = count; i < count + extra; i++) std::cout << arr[i] << " ";
+	std::cout << std::endl;
 }
 
 template<class T>
-void MyArray<T>::Del() {
-    if (arr == nullptr) return;
-    T* tmp = new T[count];
-
-    for (int i = 0; i < count; i++) tmp[i] = arr[i];
-    delete[] arr;
-    count--;
-    arr = new T[count];
-
-    for (int i = 0; i < count; i++) arr[i] = tmp[i];
-    delete[] tmp;
-}
-
-template<class T>
-int MyArray<T>::GetSize() { return count; }
+int MyArray<T>::GetUpperBound() { return count - 1; }
 
 template<class T>
 bool MyArray<T>::IsEmpty() { return count == 0; }
 
 template<class T>
+void MyArray<T>::FreeExtra() {
+	extra = 0;
+
+	T* temp = new T[count];
+	for (int i = 0; i < count; i++) temp[i] = arr[i];
+	delete[] arr;
+
+	arr = temp;
+}
+
+template<class T>
+void MyArray<T>::RemoveAll() {
+	if (arr != nullptr) {
+		delete[] arr;
+		arr = nullptr;
+	}
+	count = 0;
+	grow = 0;
+}
+
+template<class T>
+T MyArray<T>::GetAt(int index) const {
+	if (index < 0) return arr[count + index];
+	else if (index >= count || index <= -count) throw "Out of array";
+	return arr[index];
+}
+
+template<class T>
+void MyArray<T>::SetAt(T el, int index) {
+	if (index >= count || index <= -count) throw "Invalid index";
+	else if (index < 0) arr[count + index] = el;
+	arr[index] = el;
+}
+
+template<class T>
+void MyArray<T>::Add(T el) {
+	if (grow == 0) {
+		if (extra == 0) {
+			count++;
+			T* temp = new T[count];
+
+			for (int i = 0; i < count - 1; i++) temp[i] = arr[i];
+			temp[count - 1] = el;
+
+			delete[] arr;
+			arr = temp;
+		}
+		else {
+			arr[count] = el;
+			count++;
+			extra--;
+		}
+	}
+	else {
+		if (extra == 0) {
+			count++;
+			T* tmp = new T[count + grow];
+
+			for (int i = 0; i < count - 1; i++) tmp[i] = arr[i];
+			tmp[count - 1] = el;
+
+			for (int i = count; i < count + grow; i++) tmp[i] = 0;
+			extra = grow;
+
+			delete[] arr;
+
+			arr = tmp;
+		}
+		else {
+			arr[count] = el;
+			count++;
+			extra--;
+		}
+	}
+}
+
+template<class T>
 T MyArray<T>::Sum() {
-    T res = 0;
-    for (int i = 0; i < count; i++) res += arr[i];
-    return res;
+	T tmp{};
+	for (int i = 0; i < count; i++) tmp += arr[i];
+	return tmp;
 }
 
 template<class T>
-MyArray<T>::~MyArray() { delete[] arr; }
+void MyArray<T>::Append(const MyArray<T>& right) {
+	MyArray<T> tmp(this->count + right.count);
+	delete[] tmp.arr;
 
-template<class T>
-MyArray<T>& MyArray<T>::operator = (const MyArray<T>& orig) {
-    if (&orig != this) {
-        count = orig.count;
-        if (arr != nullptr) delete[] arr;
-        arr = new T[count];
-        for (int i = 0; i < count; i++) arr[i] = orig.arr[i];
-    }
-    return *this;
+	tmp.arr = new T[this->count + right.count + this->extra + right.extra];
+
+	for (int i = 0; i < this->count; i++) tmp.arr[i] = this->arr[i];
+	for (int i = this->count, j = 0; i < tmp.count; i++, j++) tmp.arr[i] = right.arr[j];
+	for (int i = tmp.count; i < this->extra + right.extra; i++) tmp.arr[i] = 0;
+
+	tmp.extra = this->extra + right.extra;
+	tmp.grow = this->grow >= right.grow ? this->grow : right.grow;
+
+	*this = tmp;
 }
 
 template<class T>
-MyArray<T> MyArray<T>::operator + (int b) {
-    int tempCount = count;
-    MyArray<T> tmp(tempCount);
+T* MyArray<T>::GetData() const { return arr; }
 
-    for (int i = 0; i < count; i++) tmp.arr[i] = arr[i];
-    count += b;
-    delete[] arr;
+template<class T>
+void MyArray<T>::InsertAt(T el, int pos) {
+	if (extra > 0) {
+		for (int i = count; i > pos; i--) std::swap(arr[i], arr[i - 1]);
+		arr[pos] = el;
+		count++;
+		extra--;
+	}
+	else {
+		count++;
+		T* tmp = new T[count];
 
-    arr = new T[count];
-    for (int i = 0; i < tmp.count; i++) arr[i] = tmp.arr[i];
-    for (int i = tmp.count; i < count; i++) arr[i] = 0;
+		for (int i = 0, j = 0; i < count; i++) {
+			if (i == pos) {
+				tmp[i] = el;
+				continue;
+			}
+			tmp[i] = arr[j];
+			j++;
+		}
 
-    tmp = *this;
-    return tmp;
+		delete[] arr;
+		arr = tmp;
+	}
 }
 
 template<class T>
-MyArray<T> MyArray<T>::operator - (int b) {
-    int tempCount = count;
-    MyArray<T> tmp(tempCount);
+void MyArray<T>::InsertAt(T* elArr, const int SIZE, int pos) {
+	if (extra >= SIZE) {
+		extra -= SIZE;
 
-    for (int i = 0; i < count; i++) tmp.arr[i] = arr[i];
-    count -= b;
-    delete[] arr;
+		T* tmp = new T[count + SIZE + extra];
 
-    arr = new T[count];
-    for (int i = 0; i < count; i++) arr[i] = tmp.arr[i];
+		for (int i = 0; i < pos; i++) tmp[i] = arr[i];
+		for (int i = 0, j = pos; i < SIZE; i++, j++) tmp[j] = elArr[i];
+		for (int i = pos + SIZE, j = pos; i < count + SIZE + extra; i++, j++) tmp[i] = arr[j];
 
-    tmp = *this;
-    return tmp;
+		delete[] arr;
+
+		arr = tmp;
+		count += SIZE;
+	}
+	else {
+		T* tmp = new T[count + SIZE + extra];
+
+		for (int i = 0; i < pos; i++) tmp[i] = arr[i];
+		for (int i = 0, j = pos; i < SIZE; i++, j++) tmp[j] = elArr[i];
+		for (int i = pos + SIZE, j = pos; i < count + SIZE + extra; i++, j++) tmp[i] = arr[j];
+
+		delete[] arr;
+
+		arr = tmp;
+		count += SIZE;
+	}
+}
+
+template<class T>
+void MyArray<T>::RemoveAt(int pos) {
+	if (pos >= 0 && pos < count) {
+		for (int i = pos; i < count; i++) {
+			if (i == count - 1) {
+				arr[i] = 0;
+				break;
+			}
+			std::swap(arr[i], arr[i + 1]);
+		}
+		count--;
+		extra++;
+	}
+	else throw "Invalid index";
+}
+
+template<class T>
+void MyArray<T>::RemoveAt(int posBegin, int posEnd) {
+	if (posBegin < posEnd && posBegin >= 0 && posBegin < count && posEnd >= 0 && posEnd < count) for (int i = 0; i <= posEnd - posBegin; i++) RemoveAt(posBegin);
+	else if (posBegin == posEnd) RemoveAt(posBegin);
+	else throw "Invalid index";
+}
+
+template<class T>
+MyArray<T>& MyArray<T>::operator ++ () {
+	T* tmp = new T[++count];
+	for (int i = 0; i < count - 1; i++) tmp[i] = arr[i];
+	tmp[count - 1] = 0;
+
+	delete[] arr;
+	arr = tmp;
+
+	return *this;
+}
+
+template<class T>
+MyArray<T>& MyArray<T>::operator -- () {
+	T* tmp = new T[--count];
+	for (int i = 0; i < count; i++) tmp[i] = arr[i];
+
+	delete[] arr;
+	arr = tmp;
+
+	return *this;
 }
 
 template<class T>
 MyArray<T> MyArray<T>::operator ++ (int) {
-    int tempCount = count;
-    MyArray<T> tmp(tempCount);
+	MyArray obj(*this);
 
-    for (int i = 0; i < count; i++) tmp.arr[i] = arr[i];
-    count += 1;
+	T* tmp = new T[++count];
+	for (int i = 0; i < count - 1; i++) tmp[i] = arr[i];
+	tmp[count - 1] = 0;
 
-    delete[] arr;
-    arr = new T[count];
+	delete[] arr;
+	arr = tmp;
 
-    for (int i = 0; i < tmp.count; i++) arr[i] = tmp.arr[i];
-    arr[count - 1] = 0;
-
-    tmp = *this;
-    return tmp;
-}
-
-template<class T>
-MyArray<T> MyArray<T>::operator ++ () {
-    int tempCount = count;
-    MyArray<T> tmp(tempCount);
-
-    for (int i = 0; i < count; i++) tmp.arr[i] = arr[i];
-    count += 1;
-
-    delete[] arr;
-    arr = new T[count];
-
-    for (int i = 0; i < tmp.count; i++) arr[i] = tmp.arr[i];
-    arr[count - 1] = 0;
-
-    return *this;
+	return obj;
 }
 
 template<class T>
 MyArray<T> MyArray<T>::operator -- (int) {
-    int tempCount = count;
-    MyArray<T> tmp(tempCount);
+	MyArray obj(*this);
 
-    for (int i = 0; i < count; i++) tmp.arr[i] = arr[i];
-    count -= 1;
+	T* tmp = new T[--count];
+	for (int i = 0; i < count; i++) tmp[i] = arr[i];
 
-    delete[] arr;
-    arr = new T[count];
+	delete[] arr;
+	arr = tmp;
 
-    for (int i = 0; i < count; i++) arr[i] = tmp.arr[i];
-
-    tmp = *this;
-    return tmp;
+	return obj;
 }
 
 template<class T>
-MyArray<T> MyArray<T>::operator -- () {
-    int tempCount = count;
-    MyArray<T> tmp(tempCount);
+MyArray<T> MyArray<T>::operator + (int n) {
+	MyArray<T> obj(count + n);
 
-    for (int i = 0; i < count; i++) tmp.arr[i] = arr[i];
-    count -= 1;
+	for (int i = 0; i < count; i++) obj.arr[i] = arr[i];
+	for (int i = count; i < obj.count; i++) obj.arr[i] = 0;
 
-    delete[] arr;
-    arr = new T[count];
-
-    for (int i = 0; i < count; i++) arr[i] = tmp.arr[i];
-
-    return *this;
+	return obj;
 }
 
 template<class T>
-T MyArray<T>::operator [] (int index) {
-    if (index < 0) return arr[count + index];
-    else if (index >= count || index <= -count) throw "Out of array";
-    return arr[index];
+MyArray<T> MyArray<T>::operator + (const MyArray<T>& right) {
+	MyArray<T> obj(count + right.count);
+
+	for (int i = 0; i < count; i++) obj.arr[i] = arr[i];
+	for (int i = count, j = 0; i < obj.count; i++, j++) obj.arr[i] = right.arr[j];
+
+	return obj;
 }
 
 template<class T>
-MyArray<T> MyArray<T>::operator + (const MyArray<T>& b) {
-    int tempCount = count;
-    MyArray<T> tmp(tempCount);
+MyArray<T> MyArray<T>::operator - (int n) {
+	if (count - n < 1) return MyArray<T>();
+	MyArray<T> obj(count - n);
+	for (int i = 0; i < obj.count; i++) obj.arr[i] = arr[i];
 
-    for (int i = 0; i < count; i++) tmp.arr[i] = arr[i];
-    count += b.count;
-
-    delete[] arr;
-    arr = new T[count];
-    
-    for (int i = 0; i < tmp.count; i++) arr[i] = tmp.arr[i];
-    for (int i = tmp.count, j = 0; i < count; i++, j++) arr[i] = b.arr[j];
-
-    tmp = *this;
-    return tmp;
+	return obj;
 }
+
+template<class T>
+MyArray<T>& MyArray<T>::operator = (const MyArray<T>& obj) {
+	if (&obj != this) {
+		if (arr != nullptr) delete[] arr;
+
+		count = obj.count;
+		extra = obj.extra;
+		grow = obj.grow;
+
+		arr = new T[count + extra];
+
+		for (int i = 0; i < count; i++) arr[i] = obj.arr[i];
+		for (int i = count; i < count + extra; i++) arr[i] = 0;
+		std::cout << std::endl;
+	}
+	return *this;
+}
+
+template<class T>
+T& MyArray<T>::operator [] (int index) {
+	if (index < 0) return arr[count + index];
+	else if (index >= count || index <= -count) throw "Out of array";
+	return arr[index];
+}
+
+template<class T>
+T MyArray<T>::operator [] (int index) const {
+	if (index < 0) return arr[count + index];
+	else if (index >= count || index <= -count) throw "Out of array";
+	return arr[index];
+}
+
+template<class T>
+int MyArray<T>::GetSize() const { return count; }
+
+template<class T>
+void MyArray<T>::SetSize(int size, int grow) {
+	this->grow = grow;
+	if (size > count) {
+		MyArray<T> obj(size);
+
+		for (int i = 0; i < count; i++) obj.arr[i] = arr[i];
+		for (int i = count; i < obj.count; i++) {
+			obj.arr[i] = 0;
+			obj.extra++;
+		}
+
+		obj.count -= obj.extra;
+		obj.grow = grow;
+
+		*this = obj;
+	}
+	else if (size < count) {
+		if (size < 1) {
+			this->RemoveAll();
+			return;
+		}
+
+		MyArray<T> obj(size);
+
+		for (int i = 0; i < obj.count; i++) obj.arr[i] = arr[i];
+		obj.grow = grow;
+
+		*this = obj;
+	}
+}
+
+template<class T>
+MyArray<T>::~MyArray() { delete[] arr; }

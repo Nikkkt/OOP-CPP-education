@@ -1,38 +1,90 @@
 #pragma once
+#include <iostream>
+
+template<class T>
+class Point;
+
+template<class T>
 class Point {
 private:
-    float x;
-    float y;
+	T X;
+	T Y;
+	T Z;
 
 public:
-    Point();
-    Point(float x, float y);
+	Point();
+	Point(T x, T y, T z);
 
-    void Print();
+	Point<T> operator + (const Point<T>& obj);
+	Point<T> operator + (T n);
 
-    Point operator+(Point b);
-    Point operator-(Point b);
+	Point<T>& operator += (const Point<T>& obj);
+	Point<T>& operator += (T n);
 
-    Point operator+(float b);
-    Point operator-(float b);
+	Point<T>& operator = (T n);
 
-    Point operator*(Point b);
-    Point operator*(float b);
+	template<class U>
+	friend std::ostream& operator << (std::ostream & o, const Point<U>& obj);
 
-    Point& operator++();
-    Point& operator--();
+	T GetX() const;
+	T GetY() const;
+	T GetZ() const;
 
-    Point operator++(int);
-    Point operator--(int);
-
-    Point& operator += (Point b);
-    Point& operator -= (Point b);
-
-    float GetX() const;
-    float GetY() const;
-
-    void SetX(float x);
-    void SetY(float y);
+	void SetX(T x);
+	void SetY(T y);
+	void SetZ(T z);
 };
 
-std::ostream& operator << (std::ostream& o, const Point& p);
+template<class T>
+Point<T>::Point() { X = Y = Z = 0; }
+
+template<class T>
+Point<T>::Point(T x, T y, T z): X(x), Y(y), Z(z) {}
+
+template<class T>
+Point<T> Point<T>::operator + (const Point<T>& obj) { return Point<T>(X + obj.X, Y + obj.Y, Z + obj.Z); }
+
+template<class T>
+Point<T> Point<T>::operator + (T num) { return Point<T>(num, num, num); }
+
+template<class T>
+Point<T>& Point<T>::operator += (const Point<T>& obj) {
+	*this = Point<T>(X + obj.X, Y + obj.Y, Z + obj.Z );
+	return *this;
+}
+
+template<class T>
+Point<T>& Point<T>::operator += (T num) {
+	*this = Point<T>(num, num, num);
+	return *this;
+}
+
+template<class T>
+Point<T>& Point<T>::operator = (T num) {
+	*this = Point<T>(num, num, num);
+	return *this;
+}
+
+template<class T>
+T Point<T>::GetX() const { return X; }
+
+template<class T>
+T Point<T>::GetY() const { return Y; }
+
+template<class T>
+T Point<T>::GetZ() const { return Z; }
+
+template<class T>
+void Point<T>::SetX(T x) { X = x; }
+
+template<class T>
+void Point<T>::SetY(T y) { Y = y; }
+
+template<class T>
+void Point<T>::SetZ(T z) { Z = z; }
+
+template<class U>
+std::ostream& operator << (std::ostream& o, const Point<U>& obj) {
+	o << "(" << obj.X << ", " << obj.Y << ", " << obj.Z << ")";
+	return o;
+}

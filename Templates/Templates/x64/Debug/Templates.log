@@ -1,11 +1,39 @@
 ﻿  main.cpp
-C:\Users\nikit\OneDrive\Рабочий стол\Programming\C++\OOP C++ education\Templates\Templates\main.cpp(6,12): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
-C:\Users\nikit\OneDrive\Рабочий стол\Programming\C++\OOP C++ education\Templates\Templates\MyArray.h(55,82): warning C4244: =: преобразование "double" в "T", возможна потеря данных
+C:\Users\nikit\OneDrive\Рабочий стол\Programming\C++\OOP C++ education\Templates\Templates\main.cpp(5,15): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+C:\Users\nikit\OneDrive\Рабочий стол\Programming\C++\OOP C++ education\Templates\Templates\MyArray.h(101,24): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\nikit\OneDrive\Рабочий стол\Programming\C++\OOP C++ education\Templates\Templates\MyArray.h(97): message : во время компиляции функции-члена класс шаблон "void MyArray<int>::PrintDev(void)"
+C:\Users\nikit\OneDrive\Рабочий стол\Programming\C++\OOP C++ education\Templates\Templates\main.cpp(10): message : выполняется компиляция ссылки на экземпляр шаблон функции "void MyArray<int>::PrintDev(void)"
+C:\Users\nikit\OneDrive\Рабочий стол\Programming\C++\OOP C++ education\Templates\Templates\main.cpp(7): message : выполняется компиляция ссылки на экземпляр класс шаблон функции "MyArray<int>"
+C:\Users\nikit\OneDrive\Рабочий стол\Programming\C++\OOP C++ education\Templates\Templates\MyArray.h(173,26): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\nikit\OneDrive\Рабочий стол\Programming\C++\OOP C++ education\Templates\Templates\MyArray.h(147): message : во время компиляции функции-члена класс шаблон "void MyArray<int>::Add(T)"
           with
           [
               T=int
           ]
-C:\Users\nikit\OneDrive\Рабочий стол\Programming\C++\OOP C++ education\Templates\Templates\MyArray.h(55): message : во время компиляции функции-члена класс шаблон "void MyArray<int>::Input(void)"
-C:\Users\nikit\OneDrive\Рабочий стол\Programming\C++\OOP C++ education\Templates\Templates\main.cpp(10): message : выполняется компиляция ссылки на экземпляр шаблон функции "void MyArray<int>::Input(void)"
-C:\Users\nikit\OneDrive\Рабочий стол\Programming\C++\OOP C++ education\Templates\Templates\main.cpp(7): message : выполняется компиляция ссылки на экземпляр класс шаблон функции "MyArray<int>"
+C:\Users\nikit\OneDrive\Рабочий стол\Programming\C++\OOP C++ education\Templates\Templates\main.cpp(43): message : выполняется компиляция ссылки на экземпляр шаблон функции "void MyArray<int>::Add(T)"
+          with
+          [
+              T=int
+          ]
+C:\Users\nikit\OneDrive\Рабочий стол\Programming\C++\OOP C++ education\Templates\Templates\MyArray.h(204,28): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\nikit\OneDrive\Рабочий стол\Programming\C++\OOP C++ education\Templates\Templates\MyArray.h(196): message : во время компиляции функции-члена класс шаблон "void MyArray<int>::Append(const MyArray<int> &)"
+C:\Users\nikit\OneDrive\Рабочий стол\Programming\C++\OOP C++ education\Templates\Templates\main.cpp(73): message : выполняется компиляция ссылки на экземпляр шаблон функции "void MyArray<int>::Append(const MyArray<int> &)"
+C:\Users\nikit\OneDrive\Рабочий стол\Programming\C++\OOP C++ education\Templates\Templates\MyArray.h(243,12): warning C4018: >=: несоответствие типов со знаком и без знака
+C:\Users\nikit\OneDrive\Рабочий стол\Programming\C++\OOP C++ education\Templates\Templates\MyArray.h(242): message : во время компиляции функции-члена класс шаблон "void MyArray<int>::InsertAt(T *,const int,int)"
+          with
+          [
+              T=int
+          ]
+C:\Users\nikit\OneDrive\Рабочий стол\Programming\C++\OOP C++ education\Templates\Templates\main.cpp(86): message : выполняется компиляция ссылки на экземпляр шаблон функции "void MyArray<int>::InsertAt(T *,const int,int)"
+          with
+          [
+              T=int
+          ]
+C:\Users\nikit\OneDrive\Рабочий стол\Programming\C++\OOP C++ education\Templates\Templates\MyArray.h(250,39): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\nikit\OneDrive\Рабочий стол\Programming\C++\OOP C++ education\Templates\Templates\MyArray.h(262,39): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\nikit\OneDrive\Рабочий стол\Programming\C++\OOP C++ education\Templates\Templates\MyArray.h(385,25): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\nikit\OneDrive\Рабочий стол\Programming\C++\OOP C++ education\Templates\Templates\MyArray.h(374): message : во время компиляции функции-члена класс шаблон "MyArray<int> &MyArray<int>::operator =(const MyArray<int> &)"
+C:\Users\nikit\OneDrive\Рабочий стол\Programming\C++\OOP C++ education\Templates\Templates\MyArray.h(209): message : выполняется компиляция ссылки на экземпляр шаблон функции "MyArray<int> &MyArray<int>::operator =(const MyArray<int> &)"
+C:\Users\nikit\OneDrive\Рабочий стол\Programming\C++\OOP C++ education\Templates\Templates\MyArray.h(73): message : во время компиляции функции-члена класс шаблон "MyArray<int>::MyArray(int)"
+C:\Users\nikit\OneDrive\Рабочий стол\Programming\C++\OOP C++ education\Templates\Templates\main.cpp(7): message : выполняется компиляция ссылки на экземпляр шаблон функции "MyArray<int>::MyArray(int)"
   Templates.vcxproj -> C:\Users\nikit\OneDrive\Рабочий стол\Programming\C++\OOP C++ education\Templates\x64\Debug\Templates.exe
