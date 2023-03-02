@@ -27,6 +27,18 @@ MyString::MyString(MyString&& moveStr): length(moveStr.length), str(moveStr.str)
 	moveStr.str = new char[moveStr.length + 1];
 }
 
+MyString::MyString(const std::initializer_list<char>& list) {
+	MyString::count++;
+	length = list.size();
+	str = new char[length + 1];
+	int i = 0;
+	for (auto element : list) { 
+		str[i] = element; 
+		i++; 
+	}
+	str[length] = '\0';
+}
+
 MyString::~MyString() {
 	delete[] str;
 	MyString::count--;

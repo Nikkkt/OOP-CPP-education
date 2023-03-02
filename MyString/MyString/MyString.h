@@ -15,6 +15,7 @@ public:
 	MyString(const char* str);
 	MyString(const MyString& copyStr);
 	MyString(MyString&& moveStr);
+	MyString(const std::initializer_list<char>& list);
 	~MyString();
 
 	//////////////// METHODS ////////////////

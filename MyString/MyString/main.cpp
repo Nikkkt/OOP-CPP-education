@@ -36,4 +36,7 @@ int main() {
 	std::cout << str2.MyStrCmp(str1) << std::endl; // 1
 	std::cout << str1.MyStrCmp(str4) << std::endl; // 0
 	MyString::ShowNumberOfObjects(); // 4 objects
+
+	MyString str5{'t', 'e', 's', 't', ' ', '1'};
+	std::cout << str5 << std::endl; //test 1
 }
