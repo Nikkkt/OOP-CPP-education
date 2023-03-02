@@ -13,6 +13,7 @@ public:
 	MyArray();
 	MyArray(int size);
 	MyArray(const MyArray<T>& ar);
+	MyArray(const std::initializer_list<T>& list);
 
 	void Input();
 	void Print();
@@ -82,6 +83,15 @@ MyArray<T>::MyArray(const MyArray<T>& obj) {
 
 	for (int i = 0; i < count; i++) arr[i] = obj.arr[i];
 	for (int i = count; i < count + extra; i++) arr[i] = 0;
+}
+
+template<class T>
+MyArray<T>::MyArray(const std::initializer_list<T>& list) : MyArray(list.size()) {
+	int i = 0;
+	for (auto element : list) {
+		arr[i] = element;
+		i++;
+	}
 }
 
 template<class T>

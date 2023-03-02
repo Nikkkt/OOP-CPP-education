@@ -1,6 +1,8 @@
 #include "MyArray.h"
 #include "Point.h"
 
+std::string TextEditing(std::string text);
+
 int main() {
     srand(time(0));
 
@@ -156,5 +158,50 @@ int main() {
     std::cout << "Int-Point array sum: " << arrPointInt.Sum() << std::endl;
     std::cout << "Double-Point array sum: " << arrPointDouble.Sum() << std::endl;
     std::cout << "Char-Point array sum: " << arrPointChar.Sum() << std::endl;
-    std::cout << "Int-Point-Point array sum: " << arrPointPointInt.Sum() << std::endl;
+    std::cout << "Int-Point-Point array sum: " << arrPointPointInt.Sum() << std::endl << std::endl;
+
+    MyArray<Point<int>> testArr{Point<int>(1, 2, 3), Point<int>(4, 5, 6), Point<int>(7, 8, 9)};
+    testArr.PrintDev(); // (1, 2, 3) (4, 5, 6) (7, 8, 9) |
+    std::cout << std::endl << std::endl;
+
+    std::string text = "    This     is   a   text    ";
+    std::string editingText = TextEditing(text);
+    std::cout << "\"" << text << "\"" << std::endl << "\"" << editingText << "\"" << std::endl;
+    //"    This     is   a   text    "
+    //"    This is a text    "
+}
+
+std::string TextEditing(std::string text) {
+    std::string editingText;
+    bool spaceEncountered = false;
+    int j = 0, count = 0;
+
+    while (text[j] == ' ') {
+        count++;
+        j++;
+    }
+    for (int i = 0; i < count - 1; i++) editingText += ' ';
+
+    for (char symbol : text) {
+        if (symbol == ' ') spaceEncountered = true;
+        else {
+            if (spaceEncountered) {
+                editingText += ' ';
+                spaceEncountered = false;
+            }
+            editingText += symbol;
+        }
+    }
+    if (spaceEncountered) editingText += ' ';
+
+    j = text.size() - 1;
+    count = 0;
+
+    while (text[j] == ' ') {
+        count++;
+        j--;
+    }
+    for (int i = 0; i < count - 1; i++) editingText.push_back(' ');
+
+    return editingText;
 }
