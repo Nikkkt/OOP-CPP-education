@@ -1,0 +1,7 @@
+﻿  Laptop.cpp
+  main.cpp
+C:\Users\nikit\OneDrive\Рабочий стол\Programming\C++\OOP C++ education\Laptop\Laptop\main.cpp(15,26): warning C4305: аргумент: усечение из "double" в "float"
+C:\Users\nikit\OneDrive\Рабочий стол\Programming\C++\OOP C++ education\Laptop\Laptop\main.cpp(18,109): warning C4305: аргумент: усечение из "double" в "float"
+C:\Users\nikit\OneDrive\Рабочий стол\Programming\C++\OOP C++ education\Laptop\Laptop\main.cpp(23,118): warning C4305: аргумент: усечение из "double" в "float"
+  Создание кода...
+  Laptop.vcxproj -> C:\Users\nikit\OneDrive\Рабочий стол\Programming\C++\OOP C++ education\Laptop\x64\Debug\Laptop.exe
