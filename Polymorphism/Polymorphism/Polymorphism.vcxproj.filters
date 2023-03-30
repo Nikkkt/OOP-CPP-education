@@ -26,5 +26,8 @@
     <ClInclude Include="second.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
+    <ClInclude Include="third.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
