@@ -33,3 +33,4 @@ public:
 };
 
 std::ostream& operator << (std::ostream& o, const Point& p);
+std::istream& operator >> (std::istream& c, Point& p);

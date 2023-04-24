@@ -74,3 +74,16 @@ std::ostream& operator<<(std::ostream& o, const Point& p) {
 	o << "(" << p.GetX() << ", " << p.GetY() << ")";
 	return o;
 }
+
+std::istream& operator>>(std::istream& c, Point& p) {
+	float x, y;
+	std::cout << "Enter X >> ";
+	c >> x;
+	std::cout << "Enter Y >> ";
+	c >> y;
+
+	p.SetX(x);
+	p.SetY(y);
+
+	return c;
+}

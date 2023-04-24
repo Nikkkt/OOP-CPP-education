@@ -1,4 +1,5 @@
 #pragma once
+#include <iostream>
 
 class Date {
 private:
@@ -23,4 +24,4 @@ public:
 	int daysFromBegin() const;
 };
 
-std::ostream& operator << (std::ostream& o, const Date& d);
+std::ostream& operator<<(std::ostream& o, const Date& d);
