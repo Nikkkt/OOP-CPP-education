@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <list>
 #include "Point.h"
 
 int main() {
@@ -9,6 +10,7 @@ int main() {
 	Point p5 = p4 - p3;
 	p5.Print(); // (0.70, 1.00)
 
+	// vector
 	std::vector<Point> pointVect;
 	for (int i = 0; i < 5; i++) {
 		Point tmp;
@@ -16,4 +18,14 @@ int main() {
 		pointVect.push_back(tmp);
 	}
 	for (int i = 0; i < 5; i++) std::cout << pointVect[i] << std::endl;
+
+	// list
+	std::list<Point> pointList;
+	for (int i = 0; i < 5; i++) {
+		Point tmp;
+		std::cin >> tmp;
+		pointList.push_back(tmp);
+	}
+	for (auto i = pointList.begin(); i != pointList.end(); i++) std::cout << *i << std::endl;
+	for (Point point : pointList) std::cout << point << std::endl;
 }
