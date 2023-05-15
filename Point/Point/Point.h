@@ -25,6 +25,8 @@ public:
     Point operator++(int);
     Point operator--(int);
 
+    bool operator < (const Point& p) const;
+
     float GetX() const;
     float GetY() const;
 

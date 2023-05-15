@@ -64,6 +64,8 @@ Point Point::operator--(int) {
 	return tmp;
 }
 
+bool Point::operator<(const Point& p) const { return std::sqrt(std::pow(x, 2) + std::pow(y, 2)) < std::sqrt(std::pow(p.x, 2) + std::pow(p.y, 2)); }
+
 float Point::GetX() const { return x; }
 float Point::GetY() const { return y; }
 

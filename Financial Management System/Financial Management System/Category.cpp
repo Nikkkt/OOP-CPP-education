@@ -1,23 +1,28 @@
 #include "Category.hpp"
 
-Category::Category(): Name("No name") {
-	Expense NoData(0.0, )
+Category::Category(): CategoryName("None"), CategoryCashback(0.0){}
+
+Category::Category(std::string CategoryName, double CategoryCashback): CategoryName(CategoryName), CategoryCashback(CategoryCashback){}
+
+std::string Category::GetCategoryName() const { return CategoryName; }
+
+double Category::GetCategoryCashback() const { return CategoryCashback; }
+
+bool Category::operator==(const Category& c) const { return (CategoryName == c.GetCategoryName() && CategoryCashback == c.GetCategoryCashback()); }
+
+std::ostream& operator<<(std::ostream& o, const Category& c) {
+	o << "Category: " << c.GetCategoryName() << std::endl << "Cashback: " << c.GetCategoryCashback();
+	return o;
 }
 
-Category::Category(std::string Name, std::vector<Expense> Expenses)
-{
-}
+std::istream& operator >> (std::istream& i, Category& c) {
+	std::string CategoryName;
+	double CategoryCashback;
 
-void Category::addExpense(Expense expense)
-{
-}
+	std::cout << "Category name: ";
+	i >> CategoryName;
+	std::cout << "Category cashback: ";
+	i >> CategoryCashback;
 
-double Category::getTotalAmount()
-{
-	return 0.0;
-}
-
-int Category::getNumberOfExpenses()
-{
-	return 0;
+	return i;
 }

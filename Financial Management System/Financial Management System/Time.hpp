@@ -17,6 +17,11 @@ public:
 	short GetSeconds() const;
 	short GetMinutes() const;
 	short GetHours() const;
+
+	void SetSeconds(unsigned short seconds);
+	void SetMinutes(unsigned short minutes);
+	void SetHours(unsigned short hours);
 };
 
 std::ostream& operator << (std::ostream& o, const Time& t);
+std::istream& operator >> (std::istream& i, Time& t);

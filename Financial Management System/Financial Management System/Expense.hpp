@@ -2,23 +2,33 @@
 #include <iostream>
 #include "Date.hpp"
 #include "Time.hpp"
+#include "Category.hpp"
 
 class Expense {
 private:
 	double ExpenseAmount;
-	std::string ExpenseCategory;
+	Category ExpenseCategory;
 	Date ExpenseDate;
 	Time ExpenseTime;
 
 public:
 	Expense();
-	Expense(double ExpenseAmount, std::string ExpenseCategory, Date ExpenseDate, Time ExpenseTime);
-	Expense(double ExpenseAmount, std::string ExpenseCategory, unsigned short day, unsigned short month, unsigned short year, unsigned short seconds, unsigned short minutes, unsigned short hours);
+	Expense(double ExpenseAmount, Category ExpenseCategory, Date ExpenseDate, Time ExpenseTime);
+	Expense(double ExpenseAmount, std::string ExpenseCategoryName, double ExpenseCategoryCashback, unsigned short day, unsigned short month, unsigned short year, unsigned short seconds, unsigned short minutes, unsigned short hours);
 
 	double GetExpenseAmount() const;
-	std::string GetExpenseCategory() const;
+	Category GetExpenseCategory() const;
 	Date GetExpenseDate() const;
 	Time GetExpenseTime() const;
+
+	void SetExpenseAmount(double ExpenseAmount);
+	void SetExpenseCategory(Category ExpenseCategory);
+	void SetExpenseDate(Date ExpenseDate);
+	void SetExpenseTime(Time ExpenseTime);
+
+	bool operator < (const Expense& e) const;
+	bool operator > (const Expense& e) const;
 };
 
 std::ostream& operator << (std::ostream& o, const Expense& e);
+std::istream& operator >> (std::istream& i, Expense& e);

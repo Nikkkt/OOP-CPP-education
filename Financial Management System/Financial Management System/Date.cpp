@@ -30,6 +30,10 @@ short Date::GetDay() const { return day; }
 short Date::GetMonth() const { return month; }
 short Date::GetYear() const { return year; }
 
+void Date::SetDay(unsigned short day) { this->day = day; }
+void Date::SetMonth(unsigned short month) { this->month = month; }
+void Date::SetYear(unsigned short year) { this->year = year; }
+
 bool Date::isLeap() const { return (year % 4 == 0 && year % 100 != 0) || year % 400 == 0; }
 
 int Date::daysInYear() const { return isLeap() ? 366 : 365; }
@@ -48,9 +52,36 @@ int Date::daysFromBegin() const {
 	return tmp;
 }
 
+bool Date::operator == (const Date& d) const { return (day == d.day && month == d.month && year == d.year); }
+
+Date Date::operator - (const int days) {
+	
+	return Date();
+}
+
 std::ostream& operator << (std::ostream& o, const Date& d) {
 	o << std::setw(2) << std::setfill('0') << d.GetDay() << "."
 		<< std::setw(2) << std::setfill('0') << d.GetMonth() << "."
 		<< std::setw(2) << std::setfill('0') << d.GetYear();
 	return o;
+}
+
+std::istream& operator >> (std::istream& i, Date& d) {
+	char dot1, dot2;
+	unsigned short day, month, year;
+	INIT:
+		std::cout << "Enter date in format DD.MM.YYYY >> ";
+		i >> day >> dot1 >> month >> dot2 >> year;
+		if (dot1 != '.' || dot2 != '.' || day < 0 || month < 0 || month > 12 ||
+			((month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12) && day > 31) ||
+			((month == 4 || month == 6 || month == 9 || month == 11) && day > 30) ||
+			(month == 2 && year % 4 != 0 && day > 28) ||
+			(month == 2 && year % 4 == 0 && day > 29)) {
+			system("cls");
+			goto INIT;
+		}
+		d.SetDay(day);
+		d.SetMonth(month);
+		d.SetYear(year);
+	return i;
 }

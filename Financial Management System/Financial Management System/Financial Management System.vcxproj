@@ -128,21 +128,27 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Account.cpp" />
+    <ClCompile Include="Card.cpp" />
     <ClCompile Include="Category.cpp" />
     <ClCompile Include="Date.cpp" />
     <ClCompile Include="Expense.cpp" />
     <ClCompile Include="functions.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="ReportGenerator.cpp" />
     <ClCompile Include="Time.cpp" />
+    <ClCompile Include="Wallet.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Account.hpp" />
+    <ClInclude Include="Card.hpp" />
     <ClInclude Include="Category.hpp" />
     <ClInclude Include="Date.hpp" />
     <ClInclude Include="Expense.hpp" />
     <ClInclude Include="functions.hpp" />
     <ClInclude Include="includes.hpp" />
+    <ClInclude Include="ReportGenerator.h" />
     <ClInclude Include="Time.hpp" />
+    <ClInclude Include="Wallet.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

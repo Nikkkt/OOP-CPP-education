@@ -1,18 +1,21 @@
 #pragma once
 #include <iostream>
 #include <vector>
-#include "Expense.hpp"
 
 class Category {
 private:
-	std::string Name;
-	std::vector<Expense> Expenses;
+	std::string CategoryName;
+	double CategoryCashback;
 
 public:
 	Category();
-	Category(std::string Name, std::vector<Expense> Expenses);
+	Category(std::string Name, double CategoryCashback);
 
-	void addExpense(Expense expense);
-	double getTotalAmount();
-	int getNumberOfExpenses();
+	std::string GetCategoryName() const;
+	double GetCategoryCashback() const;
+
+	bool operator == (const Category& c) const;
 };
+
+std::ostream& operator << (std::ostream& o, const Category& c);
+std::istream& operator >> (std::istream& i, Category& c);
