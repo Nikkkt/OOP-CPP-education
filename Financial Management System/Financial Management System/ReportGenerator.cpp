@@ -1,7 +1,9 @@
 #include "ReportGenerator.h"
 #include <algorithm>
 
-std::vector<Expense> ReportGenerator::generateDayReport(Date date, std::vector<Account*>& accounts) {
+ReportGenerator::ReportGenerator() {}
+
+std::map<Date, std::vector<Expense>> ReportGenerator::generateDayReport(Date date, std::vector<Account*>& accounts) {
 	std::vector<Expense> report;
 	int count = report.size();
 	for (int i = 0; i < accounts.size(); i++) {
@@ -21,15 +23,17 @@ std::vector<Expense> ReportGenerator::generateDayReport(Date date, std::vector<A
 		}
 	}
 	std::reverse(report.begin(), report.end());
-	return report;
+	std::map<Date, std::vector<Expense>> resoltReport;
+	resoltReport.insert(std::make_pair(date, report));
+	return resoltReport;
 }
 
-std::vector<Expense> ReportGenerator::generateWeekReport(Date date, std::vector<Account*>& accounts) {
+std::map<Date, std::vector<Expense>> ReportGenerator::generateWeekReport(Date date, std::vector<Account*>& accounts) {
 	std::vector<Expense> report;
 	int count = report.size();
 	for (int i = 0; i < accounts.size(); i++) {
 		for (int j = 0; j < accounts[i]->getAllExpenses().size(); j++) {
-			if () {
+			if ((accounts[i]->getAllExpenses()[j].GetExpenseDate() > date - 8) || (accounts[i]->getAllExpenses()[j].GetExpenseDate() < date)) {
 				report.push_back(accounts[i]->getAllExpenses()[j]);
 			}
 		}
@@ -44,16 +48,18 @@ std::vector<Expense> ReportGenerator::generateWeekReport(Date date, std::vector<
 		}
 	}
 	std::reverse(report.begin(), report.end());
-	return report;
+	std::map<Date, std::vector<Expense>> resoltReport;
+	resoltReport.insert(std::make_pair(date, report));
+	return resoltReport;
 }
 
-std::vector<Expense> ReportGenerator::generateMonthReport(Date date, std::vector<Account*>& accounts) {
+std::map<Date, std::vector<Expense>> ReportGenerator::generateMonthReport(Date date, std::vector<Account*>& accounts) {
 	std::vector<Expense> report;
 	int count = report.size();
 	for (int i = 0; i < accounts.size(); i++) {
 		for (int j = 0; j < accounts[i]->getAllExpenses().size(); j++) {
-			if (accounts[i]->getAllExpenses()[j].GetExpenseDate().daysInMonth() == date.GetMonth() &&
-				accounts[i]->getAllExpenses()[j].GetExpenseDate().daysInYear() == date.GetYear()) {
+			if (accounts[i]->getAllExpenses()[j].GetExpenseDate().GetMonth() == date.GetMonth() &&
+				accounts[i]->getAllExpenses()[j].GetExpenseDate().GetYear() == date.GetYear()) {
 				report.push_back(accounts[i]->getAllExpenses()[j]);
 			}
 		}
@@ -68,5 +74,7 @@ std::vector<Expense> ReportGenerator::generateMonthReport(Date date, std::vector
 		}
 	}
 	std::reverse(report.begin(), report.end());
-	return report;
+	std::map<Date, std::vector<Expense>> resoltReport;
+	resoltReport.insert(std::make_pair(date, report));
+	return resoltReport;
 }

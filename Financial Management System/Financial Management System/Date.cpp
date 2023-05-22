@@ -54,9 +54,37 @@ int Date::daysFromBegin() const {
 
 bool Date::operator == (const Date& d) const { return (day == d.day && month == d.month && year == d.year); }
 
+bool Date::operator < (const Date& b) const {
+	if (year < b.year) { return true; }
+	else if (year == b.year) {
+		if (month < b.month) { return true; }
+		else if (month == b.month) {
+			if (day < b.day) { return true; }
+		}
+	}
+	return false;
+}
+
+bool Date::operator > (const Date& b) const {
+	if (year > b.year) { return true; }
+	else if (year == b.year) {
+		if (month > b.month) { return true; }
+		else if (month == b.month) {
+			if (day > b.day) { return true; }
+		}
+	}
+	return false;
+}
+
 Date Date::operator - (const int days) {
-	
-	return Date();
+	Date tmp(this->day, this->month, this->year);
+	day -= days;
+	if (((month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12) && day < 0)) { day += 31; month -= 1; }
+	else if ((month == 4 || month == 6 || month == 9 || month == 11) && day < 0) { day += 30; month -= 1; }
+	else if ((month == 2 && year % 4 != 0 && day < 0)) { day += 28; month -= 1; }
+	else if ((month == 2 && year % 4 == 0 && day < 0)) { day += 29; month -= 1; }
+	if (month < 1) { month = 12; year -= 1; }
+	return tmp;
 }
 
 std::ostream& operator << (std::ostream& o, const Date& d) {

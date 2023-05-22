@@ -1,20 +1,15 @@
 #pragma once
 #include <vector>
+#include <map>
 #include "Expense.hpp"
 #include "Account.hpp"
 #include "Date.hpp"
 
 class ReportGenerator {
 public:
-	std::vector<Expense> generateDayReport(Date date, std::vector<Account*>& accounts);
-	std::vector<Expense> generateWeekReport(Date date, std::vector<Account*>& accounts);
-	std::vector<Expense> generateMonthReport(Date date, std::vector<Account*>& accounts);
+	ReportGenerator();
 
-	void ShowDayReport();
-	void ShowWeekReport();
-	void ShowMonthReport();
-
-	void AddToFileDayReport();
-	void AddToFileWeekReport();
-	void AddToFileMonthReport();
+	std::map<Date, std::vector<Expense>> generateDayReport(Date date, std::vector<Account*>& accounts);
+	std::map<Date, std::vector<Expense>> generateWeekReport(Date date, std::vector<Account*>& accounts);
+	std::map<Date, std::vector<Expense>> generateMonthReport(Date date, std::vector<Account*>& accounts);
 };

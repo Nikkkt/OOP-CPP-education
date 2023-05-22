@@ -134,6 +134,7 @@
     <ClCompile Include="Expense.cpp" />
     <ClCompile Include="functions.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Report.cpp" />
     <ClCompile Include="ReportGenerator.cpp" />
     <ClCompile Include="Time.cpp" />
     <ClCompile Include="Wallet.cpp" />
@@ -146,6 +147,7 @@
     <ClInclude Include="Expense.hpp" />
     <ClInclude Include="functions.hpp" />
     <ClInclude Include="includes.hpp" />
+    <ClInclude Include="Report.hpp" />
     <ClInclude Include="ReportGenerator.h" />
     <ClInclude Include="Time.hpp" />
     <ClInclude Include="Wallet.hpp" />

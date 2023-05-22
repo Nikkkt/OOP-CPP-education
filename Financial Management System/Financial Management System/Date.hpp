@@ -28,6 +28,8 @@ public:
 	int daysFromBegin() const;
 
 	bool operator == (const Date& d) const;
+	bool operator > (const Date& d) const;
+	bool operator < (const Date& d) const;
 	Date operator - (const int days);
 };
 
