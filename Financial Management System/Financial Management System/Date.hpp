@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <string>
 
 class Date {
 private:
@@ -26,6 +27,8 @@ public:
 	int daysInMonth() const;
 	int daysInYear() const;
 	int daysFromBegin() const;
+	std::string toString();
+	std::string toString() const;
 
 	bool operator == (const Date& d) const;
 	bool operator > (const Date& d) const;

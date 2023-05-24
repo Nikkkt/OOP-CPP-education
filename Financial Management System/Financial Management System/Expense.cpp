@@ -13,6 +13,8 @@ Category Expense::GetExpenseCategory() const { return ExpenseCategory; }
 Date Expense::GetExpenseDate() const { return ExpenseDate; }
 Time Expense::GetExpenseTime() const { return ExpenseTime; }
 
+std::string Expense::toString() { return "Expense: \nAmount: " + std::to_string(ExpenseAmount) + "\nCategory: " + ExpenseCategory.toString() + "\nDate: " + ExpenseDate.toString() + "\nTime: " + ExpenseTime.toString(); }
+
 void Expense::SetExpenseAmount(double ExpenseAmount) { this->ExpenseAmount = ExpenseAmount; }
 void Expense::SetExpenseCategory(Category ExpenseCategory) { this->ExpenseCategory = ExpenseCategory; }
 void Expense::SetExpenseDate(Date ExpenseDate) { this->ExpenseDate = ExpenseDate; }
@@ -23,25 +25,20 @@ bool Expense::operator > (const Expense& e) const { return ExpenseAmount > e.Exp
 
 std::ostream& operator << (std::ostream& o, const Expense& e) {
 	o << "Expense: " << std::endl
-		<< "Amount: " << e.GetExpenseAmount() << std::endl
-		<< "Category: " << e.GetExpenseCategory() << std::endl
-		<< "Date: " << e.GetExpenseDate() << std::endl
-		<< "Time: " << e.GetExpenseTime();
+		<< "Amount: " << e.ExpenseAmount << std::endl
+		<< "Category: " << std::endl << e.ExpenseCategory << std::endl
+		<< "Date: " << e.ExpenseDate << std::endl
+		<< "Time: " << e.ExpenseTime;
 	return o;
 }
 
 std::istream& operator >> (std::istream& i, Expense& e) {
-	double ExpenseAmount;
-	Category ExpenseCategory;
-	Date ExpenseDate;
-	Time ExpenseTime;
-
 	std::cout << "New Expense:" << std::endl << "Amount: ";
-	i >> ExpenseAmount;
+	i >> e.ExpenseAmount;
 	std::cout << "Category: ";
-	i >> ExpenseCategory;
-	i >> ExpenseDate;
-	i >> ExpenseTime;
+	i >> e.ExpenseCategory;
+	i >> e.ExpenseDate;
+	i >> e.ExpenseTime;
 
 	return i;
 }

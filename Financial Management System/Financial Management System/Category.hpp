@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <vector>
+#include <string>
 
 class Category {
 private:
@@ -14,7 +15,10 @@ public:
 	std::string GetCategoryName() const;
 	double GetCategoryCashback() const;
 
+	std::string toString();
+
 	bool operator == (const Category& c) const;
+	bool operator != (const Category& c) const;
 };
 
 std::ostream& operator << (std::ostream& o, const Category& c);

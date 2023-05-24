@@ -1,5 +1,7 @@
 #pragma once
 #include <iostream>
+#include <iomanip>
+#include <string>
 
 class Time {
 private:
@@ -13,6 +15,7 @@ public:
 
 	void Show() const;
 	void Init();
+	std::string toString();
 
 	short GetSeconds() const;
 	short GetMinutes() const;

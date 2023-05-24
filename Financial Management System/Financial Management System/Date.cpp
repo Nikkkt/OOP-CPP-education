@@ -52,6 +52,10 @@ int Date::daysFromBegin() const {
 	return tmp;
 }
 
+std::string Date::toString() { return std::to_string(day) + "." + std::to_string(month) + "." + std::to_string(year); }
+
+std::string Date::toString() const { return std::to_string(day) + "." + std::to_string(month) + "." + std::to_string(year); }
+
 bool Date::operator == (const Date& d) const { return (day == d.day && month == d.month && year == d.year); }
 
 bool Date::operator < (const Date& b) const {

@@ -1,4 +1,4 @@
-#include "ReportGenerator.h"
+#include "ReportGenerator.hpp"
 #include <algorithm>
 
 ReportGenerator::ReportGenerator() {}

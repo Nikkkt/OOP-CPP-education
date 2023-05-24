@@ -8,7 +8,11 @@ std::string Category::GetCategoryName() const { return CategoryName; }
 
 double Category::GetCategoryCashback() const { return CategoryCashback; }
 
-bool Category::operator==(const Category& c) const { return (CategoryName == c.GetCategoryName() && CategoryCashback == c.GetCategoryCashback()); }
+std::string Category::toString() { return "Category name: " + CategoryName + "\nCategory cashback: " + std::to_string(CategoryCashback); }
+
+bool Category::operator == (const Category& c) const { return CategoryName == c.GetCategoryName(); }
+
+bool Category::operator!=(const Category& c) const { return CategoryName != c.GetCategoryName(); }
 
 std::ostream& operator<<(std::ostream& o, const Category& c) {
 	o << "Category: " << c.GetCategoryName() << std::endl << "Cashback: " << c.GetCategoryCashback();

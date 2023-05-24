@@ -1,5 +1,7 @@
 ﻿  Card.cpp
   Expense.cpp
   Wallet.cpp
+  functions.cpp
+  main.cpp
   Создание кода...
   Financial Management System.vcxproj -> C:\Users\nikit\OneDrive\Рабочий стол\Programming\C++\OOP C++ education\Financial Management System\x64\Debug\Financial Management System.exe

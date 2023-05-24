@@ -1,6 +1,8 @@
 #pragma once
 #include "Account.hpp"
 #include "Expense.hpp"
+#include <limits>
+#include <string>
 #include <vector>
 
 class Wallet : public Account {
@@ -14,6 +16,7 @@ public:
 
 	void Deposit(double Amount);
 	void Withdraw(double Amount, Category ExpenseCategory, Date ExpenseDate, Time ExpenseTime);
+	void Show();
 
 	std::vector<Expense> getAllExpenses();
 	std::vector<Expense> getExpensesByCategory(Category category);

@@ -1,6 +1,4 @@
 #include "Time.hpp"
-#include <iostream>
-#include <iomanip>
 
 Time::Time() : seconds(0), minutes(0), hours(0) {}
 
@@ -21,6 +19,8 @@ void Time::Init() {
 		Init();
 	}
 }
+
+std::string Time::toString() { return std::to_string(seconds) + ":" + std::to_string(minutes) + ":" + std::to_string(hours); }
 
 short Time::GetSeconds() const { return seconds; }
 short Time::GetMinutes() const { return minutes; }

@@ -15,8 +15,20 @@ void Card::Withdraw(double Amount, Category ExpenseCategory, Date ExpenseDate, T
 			std::cout << "Expense is too big";
 		}
 	}
+	Balance += Amount * (ExpenseCategory.GetCategoryCashback() / 100);
 	Expense tmp(Amount, ExpenseCategory, ExpenseDate, ExpenseTime);
 	Expenses.push_back(tmp);
+}
+
+void Card::Show() {
+	std::cout << "-----------------------------" << std::endl
+		<< "Card " << CardName << ":" << std::endl
+		<< " Balance: " << Balance << std::endl
+		<< " Credit limit: " << CreditLimit << std::endl
+		<< "Holder: " << std::endl
+		<< " Name: " << AccountHolder << std::endl
+		<< " Card number: " << AccountNumber << std::endl
+		<< "-----------------------------" << std::endl;
 }
 
 std::vector<Expense> Card::getExpensesByCategory(Category category) {
@@ -33,7 +45,7 @@ std::ostream& operator << (std::ostream& o, const Card& c) {
 		<< " Balance: " << c.Balance << std::endl
 		<< " Credit limit: " << c.CreditLimit << std::endl
 		<< "Holder: " << std::endl
-		<< " Name" << c.AccountHolder << std::endl
+		<< " Name: " << c.AccountHolder << std::endl
 		<< " Card number: " << c.AccountNumber << std::endl
 		<< "-----------------------------";
 	return o;
@@ -42,10 +54,11 @@ std::ostream& operator << (std::ostream& o, const Card& c) {
 std::istream& operator >> (std::istream& i, Card& c) {
 	std::cout << "New Card:" << std::endl
 		<< " Account holder >> ";
-	i >> c.AccountHolder;
+	i.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+	getline(i, c.AccountHolder);
 
 	std::cout << " Account number >> ";
-	i >> c.AccountNumber;
+	getline(i, c.AccountNumber);
 
 	std::cout << " Balance >> ";
 	i >> c.Balance;
@@ -54,7 +67,8 @@ std::istream& operator >> (std::istream& i, Card& c) {
 	i >> c.CreditLimit;
 
 	std::cout << " Bank name >> ";
-	i >> c.CardName;
+	i.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+	getline(i, c.CardName);
 
 	std::vector<Expense> tmp;
 	tmp.push_back(Expense());

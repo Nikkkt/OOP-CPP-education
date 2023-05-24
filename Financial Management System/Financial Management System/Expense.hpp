@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <string>
 #include "Date.hpp"
 #include "Time.hpp"
 #include "Category.hpp"
@@ -21,6 +22,8 @@ public:
 	Date GetExpenseDate() const;
 	Time GetExpenseTime() const;
 
+	std::string toString();
+
 	void SetExpenseAmount(double ExpenseAmount);
 	void SetExpenseCategory(Category ExpenseCategory);
 	void SetExpenseDate(Date ExpenseDate);
@@ -28,7 +31,7 @@ public:
 
 	bool operator < (const Expense& e) const;
 	bool operator > (const Expense& e) const;
-};
 
-std::ostream& operator << (std::ostream& o, const Expense& e);
-std::istream& operator >> (std::istream& i, Expense& e);
+	friend std::ostream& operator << (std::ostream& o, const Expense& e);
+	friend std::istream& operator >> (std::istream& i, Expense& e);
+};

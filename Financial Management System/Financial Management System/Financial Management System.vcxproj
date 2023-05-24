@@ -148,7 +148,7 @@
     <ClInclude Include="functions.hpp" />
     <ClInclude Include="includes.hpp" />
     <ClInclude Include="Report.hpp" />
-    <ClInclude Include="ReportGenerator.h" />
+    <ClInclude Include="ReportGenerator.hpp" />
     <ClInclude Include="Time.hpp" />
     <ClInclude Include="Wallet.hpp" />
   </ItemGroup>
