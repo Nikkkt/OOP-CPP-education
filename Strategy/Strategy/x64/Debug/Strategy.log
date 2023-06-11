@@ -1,0 +1,16 @@
+﻿  main.cpp
+C:\Users\nikit\OneDrive\Рабочий стол\Programming\C++\OOP C++ education\Strategy\Strategy\main.cpp(35,1): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\nikit\OneDrive\Рабочий стол\Programming\C++\OOP C++ education\Strategy\Strategy\main.cpp(34,1): message : во время компиляции функции-члена класс шаблон "void IncreasingShellSort<int>::Sort(std::vector<T,std::allocator<T>> &)"
+          with
+          [
+              T=int
+          ]
+C:\Users\nikit\OneDrive\Рабочий стол\Programming\C++\OOP C++ education\Strategy\Strategy\main.cpp(152,30): message : выполняется компиляция ссылки на экземпляр класс шаблон функции "IncreasingShellSort<int>"
+C:\Users\nikit\OneDrive\Рабочий стол\Programming\C++\OOP C++ education\Strategy\Strategy\main.cpp(92,1): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\nikit\OneDrive\Рабочий стол\Programming\C++\OOP C++ education\Strategy\Strategy\main.cpp(91,1): message : во время компиляции функции-члена класс шаблон "void DecreasingBubbleSort<std::string>::Sort(std::vector<T,std::allocator<T>> &)"
+          with
+          [
+              T=std::string
+          ]
+C:\Users\nikit\OneDrive\Рабочий стол\Programming\C++\OOP C++ education\Strategy\Strategy\main.cpp(136,34): message : выполняется компиляция ссылки на экземпляр класс шаблон функции "DecreasingBubbleSort<std::string>"
+  Strategy.vcxproj -> C:\Users\nikit\OneDrive\Рабочий стол\Programming\C++\OOP C++ education\Strategy\x64\Debug\Strategy.exe
