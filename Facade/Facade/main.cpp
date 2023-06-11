@@ -2,77 +2,72 @@
 #include <string>
 using namespace std;
 
-class Washing {
+class Pump {
 public:
-    void Wash() { cout << "Washing with normal water" << endl; }
-    void HotWash() { cout << "washing with hot water" << endl; }
+    void FillPump() { std::cout << "Fill pump" << std::endl; }
+    void EmptyPump() { std::cout << "Empty pump" << std::endl; }
 };
 
-class Compiler
-{
+class Heater {
 public:
-    void Compile()
-    {
-        cout << "Compile application\n";
-    }
+    void HeatWater() { std::cout << "Water heating" << std::endl; }
+    void CoolWater() { std::cout << "Water cooling" << std::endl; }
 };
 
-class CLR
-{
+class Motor {
 public:
-    void Execute()
-    {
-        cout << "Execute application\n";
-    }
-    void Finish()
-    {
-        cout << "Finish application\n";
-    }
+    void StartMotor() { std::cout << "Turning motor on" << std::endl; }
+    void StopMotor() { std::cout << "Turning motor off" << std::endl; }
 };
 
-class WashingMachine
-{
-    Washing washing;
-    Compiler compiler;
-    CLR clr;
+class RinseAid {
 public:
-    WashingMachine(Washing te, Compiler compiler, CLR clr)
-    {
-        washing = te;
-        compiler = compiler;
-        clr = clr;
+    void StartRinse() { std::cout << "Starting rinse" << std::endl; }
+    void StopRinse() { std::cout << "Stopping rinse" << std::endl; }
+};
+
+class WashingMachine {
+private:
+    Pump pump;
+    Heater heater;
+    Motor motor;
+    RinseAid rinseaid;
+
+public:
+    WashingMachine(Pump pump, Motor motor, Heater heater, RinseAid rinseaid) : pump(pump), motor(motor), heater(heater), rinseaid(rinseaid) {}
+    void StartWashing() {
+        pump.FillPump();
+        heater.HeatWater();
+        motor.StartMotor();
+        rinseaid.StartRinse();
     }
-    void Start()
-    {
-        washing.CreateCode();
-        washing.Save();
-        compiler.Compile();
-        clr.Execute();
-    }
-    void Stop()
-    {
-        clr.Finish();
+    void StopWashing() {
+        rinseaid.StopRinse();
+        motor.StopMotor();
+        heater.CoolWater();
+        pump.EmptyPump();
     }
 };
 
-class Programmer
-{
+class User {
 public:
-    void CreateApplication(VisualStudioFacade facade)
-    {
-        facade.Start();
-        facade.Stop();
+    void Washing(WashingMachine& washingMachine) {
+        std::cout << "Starting washing process" << std::endl;
+        washingMachine.StartWashing();
+        std::cout << std::endl;
+        std::cout << "Stopping washing process" << std::endl;
+        washingMachine.StopWashing();
     }
 };
 
-int main()
-{
-    TextEditor textEditor;
-    Compiler compiler;
-    CLR clr;
+int main() {
+    Pump pump;
+    Motor motor;
+    Heater heater;
+    RinseAid rinser;
 
-    VisualStudioFacade ide(textEditor, compiler, clr);
+    WashingMachine washingMachine(pump, motor, heater, rinser);
 
-    Programmer programmer;
-    programmer.CreateApplication(ide);
+    User user;
+    user.Washing(washingMachine);
 }
