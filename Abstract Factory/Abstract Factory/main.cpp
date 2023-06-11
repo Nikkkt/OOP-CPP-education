@@ -4,8 +4,6 @@
 #include "Eurasia.hpp"
 
 int main() {
-	srand(time(0));
-
 	Continent* eurasia = new Eurasia();
 	AnimalWorld biosphere(eurasia);
 
